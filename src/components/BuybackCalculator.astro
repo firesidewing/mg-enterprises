@@ -1,0 +1,554 @@
+---
+import {
+  AGE_BRACKETS,
+  CONDITIONS,
+  DEVICE_FAMILIES,
+  calculateIllustrativeEstimate,
+} from '../data/catalog';
+
+interface Props {
+  mode?: 'compact' | 'full';
+  idPrefix?: string;
+}
+
+const { mode = 'compact', idPrefix = 'calc' } = Astro.props;
+const initial = calculateIllustrativeEstimate('spectralink', 250, '3-4', 'working');
+
+const familiesJson = JSON.stringify(DEVICE_FAMILIES);
+const conditionsJson = JSON.stringify(CONDITIONS);
+const agesJson = JSON.stringify(AGE_BRACKETS);
+---
+
+<div
+  class:list={[
+    'mg-buyback-calc min-w-0 rounded-[6px] bg-stone-well',
+    mode === 'compact' ? 'p-5 lg:p-6' : 'p-6 sm:p-8 lg:p-9',
+  ]}
+  data-mode={mode}
+  data-families={familiesJson}
+  data-conditions={conditionsJson}
+  data-ages={agesJson}
+>
+  <div class="flex flex-col gap-3 border-b border-stone-deep pb-4 sm:flex-row sm:items-end sm:justify-between">
+    <div class="min-w-0">
+      <p class="text-[12px] font-semibold tracking-[0.08em] text-ink-muted uppercase">
+        Rough Illustrative Recovery
+      </p>
+      <div class="mt-1 flex items-baseline gap-2">
+        <span
+          class:list={[
+            'font-display tabular leading-[0.9] font-bold tracking-[-0.035em] text-navy',
+            mode === 'compact'
+              ? 'text-[50px] sm:text-[62px] xl:text-[72px]'
+              : 'text-[46px] sm:text-[58px] xl:text-[66px]',
+          ]}
+          data-out="mid"
+        >
+          ${initial.midTotal.toLocaleString('en-CA')}
+        </span>
+        <span class="text-sm font-bold tracking-[0.06em] text-brass-deep uppercase sm:text-base">CAD</span>
+      </div>
+      <p class="mt-1.5 text-[13px] text-ink-muted tabular" data-out="range">
+        Estimated range: ${initial.lowTotal.toLocaleString('en-CA')} – ${initial.highTotal.toLocaleString('en-CA')} CAD
+      </p>
+    </div>
+
+    <div class="sm:text-right">
+      <p class="text-[12.5px] font-medium text-ink-muted" data-out="upgrade-label">
+        Effective cost on ${initial.newFleetEstimate.toLocaleString('en-CA')} refresh
+      </p>
+      <p class="mt-0.5 font-display tabular text-2xl font-bold tracking-[-0.02em] text-navy" data-out="effective">
+        ${initial.effectiveUpgradeCost.toLocaleString('en-CA')}
+      </p>
+      <p class="mt-0.5 text-[12.5px] font-semibold text-brass-deep tabular" data-out="offset-pct">
+        {initial.offsetPct.toFixed(1)}% illustrative capital offset
+      </p>
+    </div>
+  </div>
+
+  <!-- Live animated capital-offset bar -->
+  <div class="mt-3.5">
+    <div class="flex flex-wrap items-center justify-between gap-1 text-[12px] font-medium text-ink-muted">
+      <span>Recovered capital offset</span>
+      <span class="tabular" data-out="bar-caption">
+        ${initial.midTotal.toLocaleString('en-CA')} recovered vs. ${initial.effectiveUpgradeCost.toLocaleString('en-CA')} net outlay
+      </span>
+    </div>
+    <div
+      class="mt-1.5 flex h-2 w-full overflow-hidden rounded-[2px] bg-stone-deep"
+      role="img"
+      aria-label="Visual comparison of illustrative buyback recovery against replacement budget"
+    >
+      <div
+        class="h-full bg-brass transition-[width] duration-300 ease-out"
+        style={`width: ${Math.max(4, Math.min(48, initial.offsetPct))}%`}
+        data-out="bar-fill"
+      />
+      <div class="h-full flex-1 bg-navy" />
+    </div>
+  </div>
+
+  <!-- Device Family Selection -->
+  <fieldset class="mt-4 min-w-0">
+    <legend class="text-[12px] font-semibold tracking-[0.06em] text-ink-muted uppercase">
+      Make &amp; Device Family
+    </legend>
+    <div class="mt-2 grid grid-cols-2 gap-1.5 sm:grid-cols-3" role="radiogroup" aria-label="Device family">
+      {DEVICE_FAMILIES.map((family, idx) => (
+        <button
+          type="button"
+          data-family={family.id}
+          aria-pressed={idx === 0 ? 'true' : 'false'}
+          class:list={[
+            'cursor-pointer rounded-[3px] px-3 py-1.5 text-center text-[13.5px] font-semibold transition-colors duration-150',
+            idx === 0
+              ? 'bg-navy text-stone'
+              : 'bg-stone text-navy hover:bg-alabaster',
+          ]}
+        >
+          {family.shortName}
+        </button>
+      ))}
+    </div>
+    <p class="mt-1.5 text-[12.5px] text-ink-muted" data-out="examples">
+      Eligible examples: {initial.family.examples}
+    </p>
+  </fieldset>
+
+  <!-- Quantity & Age -->
+  <div class="mt-3.5 grid gap-3 sm:grid-cols-2">
+    <div class="min-w-0 rounded-[4px] bg-stone p-3">
+      <div class="flex items-baseline justify-between gap-2">
+        <label
+          for={`${idPrefix}-qty-num`}
+          class="text-[12px] font-semibold tracking-[0.05em] text-ink-muted uppercase"
+        >
+          Fleet Quantity
+        </label>
+        <div class="flex items-center gap-1.5">
+          <input
+            id={`${idPrefix}-qty-num`}
+            type="number"
+            min="10"
+            max="5000"
+            step="10"
+            value="250"
+            data-input="qty-num"
+            class="tabular w-20 rounded-[3px] bg-stone-well px-2 py-0.5 text-right text-[16px] font-bold text-navy focus:bg-alabaster"
+          />
+          <span class="text-[12.5px] font-medium text-ink-muted">units</span>
+        </div>
+      </div>
+      <input
+        id={`${idPrefix}-qty-range`}
+        type="range"
+        min="10"
+        max="1500"
+        step="10"
+        value="250"
+        data-input="qty-range"
+        aria-label="Adjust fleet device count"
+        class="brass-slider mt-2.5"
+      />
+      <div class="mt-1 flex justify-between text-[11px] text-ink-muted tabular">
+        <span>10</span>
+        <span>250</span>
+        <span>750</span>
+        <span>1,500+</span>
+      </div>
+    </div>
+
+    <div class="min-w-0 rounded-[4px] bg-stone p-3">
+      <fieldset class="min-w-0">
+        <legend class="block text-[12px] font-semibold tracking-[0.05em] text-ink-muted uppercase">
+          How Long Owned
+        </legend>
+        <div class="mt-2 grid grid-cols-3 gap-1.5 sm:grid-cols-2 xl:grid-cols-3" data-age-group>
+          {AGE_BRACKETS.map((bracket) => (
+            <button
+              type="button"
+              data-age={bracket.id}
+              aria-pressed={bracket.id === '3-4' ? 'true' : 'false'}
+              class:list={[
+                'cursor-pointer rounded-[3px] px-2 py-1.5 text-[12.5px] font-semibold transition-colors duration-150 tabular',
+                bracket.id === '3-4'
+                  ? 'bg-navy text-stone'
+                  : 'bg-stone-well text-navy hover:bg-stone-deep/70',
+              ]}
+            >
+              {bracket.shortLabel}
+            </button>
+          ))}
+        </div>
+      </fieldset>
+    </div>
+  </div>
+
+  {mode === 'full' && (
+    <div class="mt-4 grid gap-4 sm:grid-cols-2">
+      <div class="min-w-0 rounded-[4px] bg-stone p-4">
+        <label
+          for={`${idPrefix}-condition`}
+          class="block text-[12.5px] font-semibold tracking-[0.05em] text-ink-muted uppercase"
+        >
+          Fleet Condition
+        </label>
+        <select
+          id={`${idPrefix}-condition`}
+          data-input="condition"
+          class="mt-2 w-full rounded-[3px] bg-stone-well px-3 py-2.5 text-[14.5px] font-semibold text-navy"
+        >
+          {CONDITIONS.map((c) => (
+            <option value={c.id}>{c.label}</option>
+          ))}
+        </select>
+        <p class="mt-2 text-[12.5px] leading-snug text-ink-muted" data-out="condition-note">
+          {CONDITIONS[0].note}
+        </p>
+      </div>
+
+      <div class="min-w-0 rounded-[4px] bg-stone p-4">
+        <label
+          for={`${idPrefix}-model-note`}
+          class="block text-[12.5px] font-semibold tracking-[0.05em] text-ink-muted uppercase"
+        >
+          Specific Model (Optional)
+        </label>
+        <input
+          id={`${idPrefix}-model-note`}
+          type="text"
+          data-input="model-note"
+          placeholder="e.g., Spectralink 8440, iPhone 14, Zebra TC52"
+          class="mt-2 w-full rounded-[3px] bg-stone-well px-3 py-2.5 text-[14.5px] text-navy placeholder:text-ink-muted focus:bg-alabaster"
+        />
+        <p class="mt-2 text-[12.5px] leading-snug text-ink-muted">
+          Passed straight into your Equipment Recovery Assessment request.
+        </p>
+      </div>
+    </div>
+  )}
+
+  {mode === 'full' && (
+    <div class="mt-5 rounded-[4px] bg-stone p-4">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <p class="text-[13.5px] font-semibold text-navy">Mixed fleet? Build a multi-device docket</p>
+          <p class="text-[12.5px] text-ink-muted">Add your current selection to combine Spectralink, iOS, Android, Zebra, or Cisco counts.</p>
+        </div>
+        <button
+          type="button"
+          data-action="add-line"
+          class="cursor-pointer rounded-[3px] bg-stone-well px-4 py-2 text-[13.5px] font-semibold text-navy transition-colors hover:bg-navy hover:text-stone"
+        >
+          + Add to Fleet Docket
+        </button>
+      </div>
+      <div class="mt-3 hidden space-y-2 border-t border-stone-deep pt-3" data-docket-wrap>
+        <ul class="space-y-1.5 text-[13.5px]" data-docket-list></ul>
+        <div class="flex flex-wrap items-center justify-between gap-2 border-t border-stone-deep/80 pt-2.5 text-[14px] font-bold text-navy tabular">
+          <span>Combined Docket Rough Estimate</span>
+          <span data-docket-total class="text-brass-deep"></span>
+        </div>
+      </div>
+    </div>
+  )}
+
+  <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <a
+      href={`/assessment?family=spectralink&qty=250&age=3-4&est=${initial.lowTotal}-${initial.highTotal}`}
+      data-out="assessment-link"
+      class="inline-flex items-center justify-center gap-2 rounded-[3px] bg-navy px-5 py-3 text-[14.5px] font-semibold text-stone transition-colors hover:bg-navy-surface"
+    >
+      Carry Estimate to Assessment
+      <svg class="h-4 w-4 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3.5 8h9m0 0-3.5-3.5M12.5 8 9 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </a>
+
+    {mode === 'compact' && (
+      <a
+        href="/buyback#calculator"
+        class="inline-flex items-center justify-center text-[14px] font-semibold text-navy underline decoration-brass hover:text-brass-deep"
+      >
+        Full multi-fleet calculator
+      </a>
+    )}
+  </div>
+
+  {mode === 'full' && (
+    <p class="mt-3 text-[12.5px] leading-relaxed text-ink-muted" data-out="lifecycle-tip">
+      {initial.family.lifecycleNote}
+    </p>
+  )}
+  <p class="mt-2.5 text-[12px] leading-snug text-ink-muted">
+    Rough illustrative estimate only — formal offers reflect exact model mix, quantity, age, condition, and market demand.
+  </p>
+</div>
+
+<script>
+  interface Family {
+    id: string;
+    name: string;
+    shortName: string;
+    examples: string;
+    basePerUnit3to4: number;
+    typicalNewUnitCost: number;
+    ageMultipliers: Record<string, number>;
+    lifecycleNote: string;
+  }
+  interface Condition {
+    id: string;
+    label: string;
+    multiplier: number;
+    note: string;
+  }
+  interface DocketItem {
+    id: number;
+    familyName: string;
+    modelNote: string;
+    qty: number;
+    ageLabel: string;
+    low: number;
+    mid: number;
+    high: number;
+  }
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function formatCAD(val: number) {
+    return '$' + Math.round(val).toLocaleString('en-CA');
+  }
+
+  function animateNumber(el: HTMLElement, from: number, to: number, formatter: (n: number) => string) {
+    if (prefersReduced || Math.abs(to - from) < 1) {
+      el.textContent = formatter(to);
+      return;
+    }
+    const start = performance.now();
+    const duration = 280;
+    const step = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = formatter(from + (to - from) * eased);
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  document.querySelectorAll<HTMLElement>('.mg-buyback-calc').forEach((root) => {
+    const families: Family[] = JSON.parse(root.dataset.families || '[]');
+    const conditions: Condition[] = JSON.parse(root.dataset.conditions || '[]');
+    const ages: { id: string; label: string; shortLabel: string }[] = JSON.parse(root.dataset.ages || '[]');
+
+    let state = {
+      familyId: 'spectralink',
+      qty: 250,
+      ageId: '3-4',
+      conditionId: 'working',
+      modelNote: '',
+    };
+
+    let prevMid = 25000;
+    let prevEff = 175000;
+    let docket: DocketItem[] = [];
+    let nextDocketId = 1;
+
+    const midEl = root.querySelector<HTMLElement>('[data-out="mid"]');
+    const rangeEl = root.querySelector<HTMLElement>('[data-out="range"]');
+    const upgradeLabelEl = root.querySelector<HTMLElement>('[data-out="upgrade-label"]');
+    const effEl = root.querySelector<HTMLElement>('[data-out="effective"]');
+    const offsetPctEl = root.querySelector<HTMLElement>('[data-out="offset-pct"]');
+    const barFillEl = root.querySelector<HTMLElement>('[data-out="bar-fill"]');
+    const barCaptionEl = root.querySelector<HTMLElement>('[data-out="bar-caption"]');
+    const examplesEl = root.querySelector<HTMLElement>('[data-out="examples"]');
+    const tipEl = root.querySelector<HTMLElement>('[data-out="lifecycle-tip"]');
+    const condNoteEl = root.querySelector<HTMLElement>('[data-out="condition-note"]');
+    const linkEl = root.querySelector<HTMLAnchorElement>('[data-out="assessment-link"]');
+
+    const qtyNum = root.querySelector<HTMLInputElement>('[data-input="qty-num"]');
+    const qtyRange = root.querySelector<HTMLInputElement>('[data-input="qty-range"]');
+    const condSelect = root.querySelector<HTMLSelectElement>('[data-input="condition"]');
+    const modelInput = root.querySelector<HTMLInputElement>('[data-input="model-note"]');
+
+    const docketWrap = root.querySelector<HTMLElement>('[data-docket-wrap]');
+    const docketList = root.querySelector<HTMLUListElement>('[data-docket-list]');
+    const docketTotal = root.querySelector<HTMLElement>('[data-docket-total]');
+
+    function compute() {
+      const fam = families.find((f) => f.id === state.familyId) ?? families[0];
+      const cond = conditions.find((c) => c.id === state.conditionId) ?? conditions[0];
+      const qty = Math.max(1, Math.min(10000, Math.round(state.qty || 1)));
+      const ageMult = fam.ageMultipliers[state.ageId] ?? 1.0;
+      const volFactor = qty >= 500 ? 1.06 : qty >= 200 ? 1.0 : qty >= 50 ? 0.96 : 0.9;
+
+      const perUnit = Math.round(fam.basePerUnit3to4 * ageMult * cond.multiplier * volFactor);
+      const mid = perUnit * qty;
+      const low = Math.round((mid * 0.85) / 50) * 50;
+      const high = Math.round((mid * 1.15) / 50) * 50;
+      const newFleet = qty * fam.typicalNewUnitCost;
+      const eff = Math.max(0, newFleet - mid);
+      const pct = newFleet > 0 ? Math.min(45, (mid / newFleet) * 100) : 0;
+
+      return { fam, cond, qty, low, mid, high, newFleet, eff, pct };
+    }
+
+    function updateLink(res: ReturnType<typeof compute>) {
+      if (!linkEl) return;
+      const params = new URLSearchParams();
+      if (docket.length > 0) {
+        const summary = docket
+          .map((d) => `${d.qty}x ${d.familyName}${d.modelNote ? ` (${d.modelNote})` : ''} [${d.ageLabel}]`)
+          .join('; ');
+        const totalLow = docket.reduce((s, d) => s + d.low, 0);
+        const totalHigh = docket.reduce((s, d) => s + d.high, 0);
+        const totalQty = docket.reduce((s, d) => s + d.qty, 0);
+        params.set('family', 'mixed-fleet');
+        params.set('qty', String(totalQty));
+        params.set('age', state.ageId);
+        params.set('est', `${totalLow}-${totalHigh}`);
+        params.set('docket', summary);
+      } else {
+        params.set('family', res.fam.id);
+        params.set('qty', String(res.qty));
+        params.set('age', state.ageId);
+        params.set('est', `${res.low}-${res.high}`);
+        if (state.modelNote.trim()) params.set('model', state.modelNote.trim());
+      }
+      linkEl.href = `/assessment?${params.toString()}`;
+    }
+
+    function render(animate = true) {
+      const res = compute();
+      if (midEl) {
+        if (animate) animateNumber(midEl, prevMid, res.mid, formatCAD);
+        else midEl.textContent = formatCAD(res.mid);
+      }
+      if (effEl) {
+        if (animate) animateNumber(effEl, prevEff, res.eff, formatCAD);
+        else effEl.textContent = formatCAD(res.eff);
+      }
+      prevMid = res.mid;
+      prevEff = res.eff;
+
+      if (rangeEl) rangeEl.textContent = `Estimated range: ${formatCAD(res.low)} – ${formatCAD(res.high)} CAD`;
+      if (upgradeLabelEl) upgradeLabelEl.textContent = `Effective cost on ${formatCAD(res.newFleet)} refresh`;
+      if (offsetPctEl) offsetPctEl.textContent = `${res.pct.toFixed(1)}% illustrative capital offset`;
+      if (barFillEl) barFillEl.style.width = `${Math.max(4, Math.min(48, res.pct))}%`;
+      if (barCaptionEl) barCaptionEl.textContent = `${formatCAD(res.mid)} recovered vs. ${formatCAD(res.eff)} net outlay`;
+      if (examplesEl) examplesEl.textContent = `Eligible examples: ${res.fam.examples}`;
+      if (tipEl) tipEl.textContent = res.fam.lifecycleNote;
+      if (condNoteEl) condNoteEl.textContent = res.cond.note;
+
+      updateLink(res);
+    }
+
+    function renderDocket() {
+      if (!docketWrap || !docketList || !docketTotal) return;
+      if (docket.length === 0) {
+        docketWrap.classList.add('hidden');
+        updateLink(compute());
+        return;
+      }
+      docketWrap.classList.remove('hidden');
+      docketList.innerHTML = '';
+      docket.forEach((item) => {
+        const li = document.createElement('li');
+        li.className = 'flex items-center justify-between gap-3 rounded-[3px] bg-stone-well px-3 py-2';
+        li.innerHTML = `
+          <span class="text-navy">
+            <strong class="tabular">${item.qty}×</strong> ${item.familyName}${item.modelNote ? ` (${item.modelNote})` : ''} · <span class="text-ink-muted">${item.ageLabel}</span>
+          </span>
+          <span class="flex items-center gap-3 shrink-0 tabular">
+            <strong class="text-navy">${formatCAD(item.low)}–${formatCAD(item.high)}</strong>
+            <button type="button" data-remove="${item.id}" class="cursor-pointer text-xs font-semibold text-ink-muted hover:text-navy" aria-label="Remove line">Remove</button>
+          </span>
+        `;
+        docketList.appendChild(li);
+      });
+      const totalLow = docket.reduce((s, d) => s + d.low, 0);
+      const totalHigh = docket.reduce((s, d) => s + d.high, 0);
+      const totalQty = docket.reduce((s, d) => s + d.qty, 0);
+      docketTotal.textContent = `${formatCAD(totalLow)} – ${formatCAD(totalHigh)} CAD (${totalQty} devices)`;
+      updateLink(compute());
+    }
+
+    root.querySelectorAll<HTMLButtonElement>('[data-family]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        state.familyId = btn.dataset.family || 'spectralink';
+        root.querySelectorAll<HTMLButtonElement>('[data-family]').forEach((b) => {
+          const active = b === btn;
+          b.setAttribute('aria-pressed', String(active));
+          b.className = `cursor-pointer rounded-[3px] px-3 py-1.5 text-center text-[13.5px] font-semibold transition-colors duration-150 ${
+            active ? 'bg-navy text-stone' : 'bg-stone text-navy hover:bg-alabaster'
+          }`;
+        });
+        render(true);
+      });
+    });
+
+    root.querySelectorAll<HTMLButtonElement>('[data-age]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        state.ageId = btn.dataset.age || '3-4';
+        root.querySelectorAll<HTMLButtonElement>('[data-age]').forEach((b) => {
+          const active = b === btn;
+          b.setAttribute('aria-pressed', String(active));
+          b.className = `cursor-pointer rounded-[3px] px-2 py-1.5 text-[12.5px] font-semibold transition-colors duration-150 tabular ${
+            active ? 'bg-navy text-stone' : 'bg-stone-well text-navy hover:bg-stone-deep/70'
+          }`;
+        });
+        render(true);
+      });
+    });
+
+    qtyRange?.addEventListener('input', () => {
+      state.qty = Number(qtyRange.value);
+      if (qtyNum) qtyNum.value = String(state.qty);
+      render(false);
+    });
+
+    qtyNum?.addEventListener('input', () => {
+      const parsed = Math.max(1, Math.min(10000, Number(qtyNum.value) || 1));
+      state.qty = parsed;
+      if (qtyRange) qtyRange.value = String(Math.min(1500, parsed));
+      render(true);
+    });
+
+    condSelect?.addEventListener('change', () => {
+      state.conditionId = condSelect.value;
+      render(true);
+    });
+
+    modelInput?.addEventListener('input', () => {
+      state.modelNote = modelInput.value;
+      updateLink(compute());
+    });
+
+    root.querySelector<HTMLButtonElement>('[data-action="add-line"]')?.addEventListener('click', () => {
+      const res = compute();
+      const ageObj = ages.find((a) => a.id === state.ageId);
+      docket.push({
+        id: nextDocketId++,
+        familyName: res.fam.name,
+        modelNote: state.modelNote.trim(),
+        qty: res.qty,
+        ageLabel: ageObj?.shortLabel || state.ageId,
+        low: res.low,
+        mid: res.mid,
+        high: res.high,
+      });
+      if (modelInput) {
+        modelInput.value = '';
+        state.modelNote = '';
+      }
+      renderDocket();
+    });
+
+    docketList?.addEventListener('click', (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('[data-remove]');
+      if (!btn) return;
+      const id = Number(btn.dataset.remove);
+      docket = docket.filter((d) => d.id !== id);
+      renderDocket();
+    });
+  });
+</script>

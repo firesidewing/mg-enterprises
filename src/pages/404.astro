@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+---
+
+<BaseLayout title="Page Not Found — MG Enterprises">
+  <section class="bg-stone py-24 lg:py-32">
+    <div class="mx-auto max-w-[720px] px-6 text-center">
+      <div class="inline-flex justify-center">
+        <BrandMark variant="monogram" theme="light" class="h-12 w-auto" />
+      </div>
+      <h1 class="mt-6 font-display text-4xl font-semibold tracking-[-0.03em] text-navy sm:text-5xl">
+        This page is no longer in service.
+      </h1>
+      <p class="mt-4 text-[17px] leading-relaxed text-ink-muted">
+        The route you requested could not be found. Return to the overview or jump straight into the rough buyback estimate calculator.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/"
+          class="rounded-[3px] bg-navy px-6 py-3.5 text-[15px] font-semibold text-stone transition-colors hover:bg-navy-surface"
+        >
+          Back to Overview
+        </a>
+        <a
+          href="/buyback#calculator"
+          class="rounded-[3px] bg-stone-well px-6 py-3.5 text-[15px] font-semibold text-navy transition-colors hover:bg-stone-deep"
+        >
+          Open Buyback Calculator
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

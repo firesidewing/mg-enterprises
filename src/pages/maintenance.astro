@@ -1,0 +1,195 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import LifecycleCurve from '../components/LifecycleCurve.astro';
+import { SPECTRALINK_CONTRACTS } from '../data/catalog';
+---
+
+<BaseLayout
+  title="Spectralink 3/6/12-Month Maintenance & Technology Refresh — MG Enterprises"
+  description="Customized 3-, 6-, and 12-month extended warranty and maintenance contracts for Spectralink phones, legacy repair, spare sourcing, and phased technology refresh programs in Canada."
+  activeNav="maintenance"
+>
+  <section class="bg-stone pt-12 pb-16 lg:pt-16 lg:pb-20">
+    <div class="mx-auto max-w-[1320px] px-6 lg:px-12">
+      <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+        <div class="lg:col-span-8">
+          <h1 class="font-display text-4xl leading-[1.03] font-semibold tracking-[-0.03em] text-navy sm:text-[54px]">
+            Extend fleet life on 3-, 6-, or 12-month terms — without forced replacement.
+          </h1>
+          <p class="mt-5 max-w-[62ch] text-[17.5px] leading-relaxed text-ink-muted">
+            Not every enterprise wireless deployment needs to be replaced on a manufacturer's calendar. MG Enterprises offers customized short-term extended warranty and maintenance agreements for Spectralink phones alongside legacy handset repair, spare sourcing, and advanced replacement options.
+          </p>
+        </div>
+        <div class="lg:col-span-4 lg:text-right">
+          <a
+            href="/assessment?type=maintenance&family=spectralink"
+            class="inline-flex items-center gap-2 rounded-[3px] bg-navy px-6 py-4 text-[15px] font-semibold text-stone transition-colors hover:bg-navy-surface"
+          >
+            Request Spectralink Contract Quote
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Customized 3 / 6 / 12-Month Spectralink Contracts — Asymmetric Architectural Ledger -->
+  <section class="bg-stone-subtle py-18 lg:py-24" aria-labelledby="contracts-heading">
+    <div class="mx-auto max-w-[1320px] px-6 lg:px-12">
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-4">
+          <h2 id="contracts-heading" class="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.025em] text-navy sm:text-[40px]">
+            Spectralink Extended Warranty &amp; Maintenance Agreements
+          </h2>
+          <p class="mt-4 text-[16px] leading-relaxed text-ink-muted">
+            Choose coverage duration around your actual budget cycle or phased refresh schedule — 3<span class="mg-slash-divider" aria-hidden="true"></span>6<span class="mg-slash-divider" aria-hidden="true"></span>12 months — instead of overpaying for inflexible multi-year commitments.
+          </p>
+
+          <div class="mt-8 rounded-[6px] bg-navy p-6 text-ink-on-dark">
+            <h3 class="font-display text-xl font-semibold text-ink-on-dark">
+              Pair coverage with early buyback
+            </h3>
+            <p class="mt-2.5 text-[14.5px] leading-relaxed text-muted-on-dark">
+              Many organizations lock in a 3- or 6-month Spectralink bridge while finalizing replacement quotes, then apply fleet buyback recovery directly toward the new deployment.
+            </p>
+            <a
+              href="/buyback#calculator"
+              class="mt-5 inline-flex items-center gap-1.5 text-[14.5px] font-semibold text-brass-light underline decoration-brass-light hover:text-brass-pale"
+            >
+              Estimate Spectralink buyback value
+            </a>
+          </div>
+        </div>
+
+        <div class="divide-y divide-stone-deep rounded-[6px] bg-stone-well px-6 sm:px-9 lg:col-span-8">
+          {SPECTRALINK_CONTRACTS.map((c) => (
+            <article class="grid gap-6 py-8 sm:grid-cols-12">
+              <div class="sm:col-span-4">
+                <span class="font-display tabular block text-4xl font-bold tracking-[-0.03em] text-navy">
+                  {c.term}
+                </span>
+                <h3 class="mt-2 font-display text-xl font-semibold text-navy">
+                  {c.title}
+                </h3>
+                <p class="mt-1.5 text-[13.5px] font-semibold text-brass-deep">
+                  {c.idealFor}
+                </p>
+              </div>
+
+              <div class="sm:col-span-8">
+                <p class="text-[15.5px] leading-relaxed text-ink-muted">
+                  {c.summary}
+                </p>
+                <ul class="mt-4 space-y-2 text-[14.5px] text-navy">
+                  {c.includes.map((line) => (
+                    <li class="flex items-start gap-2.5">
+                      <svg class="mt-1 h-4 w-4 shrink-0 text-brass-deep" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                        <path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      <span>{line}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a
+                  href="/assessment?type=maintenance&family=spectralink"
+                  class="mt-5 inline-flex items-center gap-1.5 text-[14.5px] font-semibold text-navy underline decoration-brass hover:text-brass-deep"
+                >
+                  Inquire about {c.term} coverage
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Equipment Maintenance Capabilities -->
+  <section class="bg-stone py-20 lg:py-24" aria-labelledby="capabilities-heading">
+    <div class="mx-auto max-w-[1320px] px-6 lg:px-12">
+      <div class="grid gap-12 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <h2 id="capabilities-heading" class="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.025em] text-navy sm:text-[38px]">
+            Equipment Maintenance &amp; Lifecycle Extension
+          </h2>
+          <p class="mt-4 text-[16px] leading-relaxed text-ink-muted">
+            Practical, responsive support engineered to keep mission-critical wireless communications running smoothly across healthcare, manufacturing, warehousing, and enterprise sites.
+          </p>
+        </div>
+
+        <div class="divide-y divide-stone-deep lg:col-span-7">
+          {[
+            {
+              title: 'Legacy handset repair and refurbishment',
+              detail: 'Component-level repair and thorough refurbishment that restores worn enterprise handsets to reliable daily operation.',
+            },
+            {
+              title: 'Replacement equipment and spare device sourcing',
+              detail: 'Source compatible spares for deployed handset generations even after OEM supply tightens.',
+            },
+            {
+              title: 'Advanced replacement options',
+              detail: 'Minimize clinical or plant-floor downtime by keeping replacement units ready to dispatch before defective gear returns.',
+            },
+            {
+              title: 'Customized maintenance agreements',
+              detail: 'Structure 3-, 6-, or 12-month maintenance terms tailored to your exact handset count and cutover schedule.',
+            },
+            {
+              title: 'Support for eligible end-of-life technologies',
+              detail: 'Bridge past manufacturer end-of-support milestones safely while planning a financially justified refresh.',
+            },
+          ].map((cap) => (
+            <div class="py-5 first:pt-0 last:pb-0">
+              <h3 class="font-display text-xl font-semibold text-navy">{cap.title}</h3>
+              <p class="mt-1.5 text-[15px] leading-relaxed text-ink-muted">{cap.detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Lifecycle Curve -->
+  <LifecycleCurve />
+
+  <!-- Technology Refresh & Transition Programs -->
+  <section id="refresh" class="scroll-mt-24 bg-stone py-20 lg:py-28" aria-labelledby="refresh-heading">
+    <div class="mx-auto max-w-[1320px] px-6 lg:px-12">
+      <div class="grid gap-10 lg:grid-cols-12">
+        <div class="lg:col-span-5">
+          <div class="mb-5">
+            <BrandMark variant="monogram" theme="light" class="h-10 w-auto" />
+          </div>
+          <h2 id="refresh-heading" class="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.025em] text-navy sm:text-[40px]">
+            Technology Refresh &amp; Transition Programs
+          </h2>
+          <p class="mt-4 text-[16px] leading-relaxed text-ink-muted">
+            Replacing hundreds or thousands of enterprise mobile devices is a major financial and operational undertaking. We coordinate recovery value and staged retirement so your team transitions smoothly.
+          </p>
+          <a
+            href="/assessment?type=refresh"
+            class="mt-7 inline-flex items-center gap-2 rounded-[3px] bg-navy px-6 py-3.5 text-[15px] font-semibold text-stone transition-colors hover:bg-navy-surface"
+          >
+            Plan a Phased Refresh Assessment
+          </a>
+        </div>
+
+        <ol class="space-y-4 lg:col-span-7">
+          {[
+            { n: '01', text: 'Assess the existing mobile device fleet across sites and models.' },
+            { n: '02', text: 'Identify handsets and communications infrastructure eligible for buyback.' },
+            { n: '03', text: 'Estimate potential capital recovery value to strengthen the upgrade business case.' },
+            { n: '04', text: 'Coordinate phased retirement of outgoing equipment alongside short-term bridge coverage.' },
+            { n: '05', text: 'Support a financially and operationally smooth enterprise technology refresh.' },
+          ].map((step) => (
+            <li class="flex items-baseline gap-5 rounded-[4px] bg-stone-well px-6 py-5">
+              <span class="font-display tabular text-sm font-bold tracking-[0.12em] text-brass-deep">{step.n}</span>
+              <span class="text-[16px] font-medium text-navy">{step.text}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

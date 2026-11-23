@@ -1,0 +1,99 @@
+---
+interface Props {
+  variant?: 'horizontal' | 'stacked' | 'monogram' | 'watermark';
+  theme?: 'light' | 'dark';
+  priority?: boolean;
+  class?: string;
+}
+
+const {
+  variant = 'horizontal',
+  theme = 'light',
+  priority = false,
+  class: className = '',
+} = Astro.props;
+
+const imgSrc =
+  theme === 'dark'
+    ? '/images/brand/mg-monogram-dark.png'
+    : '/images/brand/mg-monogram-light.png';
+const subColor = theme === 'dark' ? '#B6C3D4' : '#465362';
+const goldRule = theme === 'dark' ? '#DFB768' : '#B9862D';
+---
+
+{variant === 'watermark' ? (
+  <svg
+    class={className}
+    viewBox="0 0 280 180"
+    fill="none"
+    aria-hidden="true"
+  >
+    <!-- Pure architectural 55-degree parallel diagonal slashes echoing the interlocking MG join -->
+    <line x1="94" y1="176" x2="196" y2="6" stroke="currentColor" stroke-width="1.5" />
+    <line x1="122" y1="176" x2="224" y2="6" stroke="currentColor" stroke-width="1.5" />
+    <line x1="150" y1="176" x2="252" y2="6" stroke="currentColor" stroke-width="1" stroke-opacity="0.65" />
+    <line x1="36" y1="148" x2="256" y2="148" stroke="currentColor" stroke-width="1" stroke-opacity="0.5" />
+  </svg>
+) : variant === 'horizontal' ? (
+  <span class:list={['inline-flex items-center gap-3 select-none sm:gap-4', className]}>
+    <img
+      src={imgSrc}
+      alt="MG Enterprises monogram"
+      width="560"
+      height="284"
+      decoding="async"
+      fetchpriority={priority ? 'high' : undefined}
+      class="h-10 w-auto shrink-0 sm:h-[52px]"
+    />
+    <span
+      class="h-7 w-px shrink-0 sm:h-9"
+      style={`background: linear-gradient(180deg, transparent, ${goldRule}, transparent);`}
+      aria-hidden="true"
+    />
+    <span class="flex flex-col leading-none">
+      <span
+        class="font-display text-[13.5px] font-semibold tracking-[0.22em] sm:text-[17px] sm:tracking-[0.26em]"
+        style={`color: ${theme === 'dark' ? '#F4F1EA' : '#0B1D35'};`}
+      >
+        ENTERPRISES
+      </span>
+      <span
+        class="mt-1 hidden text-[10.5px] font-medium tracking-[0.12em] uppercase sm:block"
+        style={`color: ${subColor};`}
+      >
+        Mobility Lifecycle · Canada
+      </span>
+    </span>
+  </span>
+) : variant === 'monogram' ? (
+  <img
+    src={imgSrc}
+    alt="MG Enterprises"
+    width="560"
+    height="284"
+    decoding="async"
+    class={className || 'h-10 w-auto'}
+  />
+) : (
+  <span class:list={['inline-flex flex-col items-center gap-2 select-none', className]}>
+    <img
+      src={imgSrc}
+      alt="MG Enterprises"
+      width="560"
+      height="284"
+      decoding="async"
+      class="h-12 w-auto"
+    />
+    <span
+      class="h-[1.5px] w-full"
+      style={`background: linear-gradient(90deg, transparent, ${goldRule}, transparent);`}
+      aria-hidden="true"
+    />
+    <span
+      class="pl-[0.34em] text-[11px] font-semibold tracking-[0.34em]"
+      style={`color: ${subColor};`}
+    >
+      ENTERPRISES
+    </span>
+  </span>
+)}

@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+---
+
+<BaseLayout
+  title="Channel Partner Programs — MG Enterprises"
+  description="Help your customers upgrade without leaving money behind. Canadian enterprise mobility buyback and Spectralink lifecycle programs for resellers and systems integrators."
+  activeNav="partners"
+>
+  <section class="bg-stone pt-12 pb-16 lg:pt-16 lg:pb-22">
+    <div class="mx-auto max-w-[1320px] px-6 lg:px-12">
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+        <div class="lg:col-span-7">
+          <h1 class="font-display text-4xl leading-[1.03] font-semibold tracking-[-0.03em] text-navy sm:text-[56px]">
+            Help your customers upgrade without leaving money behind.
+          </h1>
+          <p class="mt-6 max-w-[58ch] text-[19px] leading-relaxed font-medium text-navy">
+            Don't just sell the replacement<span class="mg-slash-divider" aria-hidden="true"></span>Help customers recover value from what they're replacing.
+          </p>
+          <p class="mt-4 max-w-[60ch] text-[16.5px] leading-relaxed text-ink-muted">
+            Your customers may be holding onto aging Spectralink, Cisco, Zebra, iOS, or Android devices because replacing an entire fleet demands significant capital. MG Enterprises helps Canadian resellers and systems integrators introduce equipment buyback early in the sales cycle — turning stalled hardware quotes into funded modernization plans.
+          </p>
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href="/assessment?audience=partner"
+              class="inline-flex items-center gap-2 rounded-[3px] bg-navy px-6 py-4 text-[15.5px] font-semibold text-stone transition-colors hover:bg-navy-surface"
+            >
+              Request a Partner Fleet Assessment
+            </a>
+            <a
+              href="/buyback#calculator"
+              class="border-b-[1.5px] border-brass pb-1 text-[15px] font-semibold text-navy hover:text-brass-deep"
+            >
+              Estimate Customer Fleet Value
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Partner Proposal Offset Modeler -->
+        <div class="rounded-[6px] bg-stone-well p-7 sm:p-9 lg:col-span-5" id="partner-modeler">
+          <h2 class="font-display text-2xl font-semibold tracking-[-0.02em] text-navy">
+            Illustrative Deal-Offset Modeler
+          </h2>
+          <p class="mt-2 text-[14.5px] leading-relaxed text-ink-muted">
+            Adjust a prospective hardware upgrade budget to illustrate how early buyback recovery lowers effective customer spend.
+          </p>
+
+          <div class="mt-6 rounded-[4px] bg-stone p-4">
+            <div class="flex items-baseline justify-between gap-3">
+              <label for="deal-size-range" class="text-[12.5px] font-semibold tracking-[0.06em] text-ink-muted uppercase">
+                New Device Investment
+              </label>
+              <span id="deal-size-out" class="font-display tabular text-2xl font-bold text-navy">$200,000</span>
+            </div>
+            <input
+              id="deal-size-range"
+              type="range"
+              min="50000"
+              max="1000000"
+              step="25000"
+              value="200000"
+              class="brass-slider mt-3.5"
+            />
+            <div class="mt-1.5 flex justify-between text-[11.5px] text-ink-muted tabular">
+              <span>$50K</span>
+              <span>$200K</span>
+              <span>$500K</span>
+              <span>$1M</span>
+            </div>
+          </div>
+
+          <dl class="mt-6 divide-y divide-stone-deep">
+            <div class="flex items-baseline justify-between gap-4 py-3.5">
+              <dt class="text-[14.5px] text-ink-muted">Illustrative fleet buyback (12.5%)</dt>
+              <dd id="deal-buyback-out" class="font-display tabular text-xl font-bold text-brass-deep">&minus; $25,000</dd>
+            </div>
+            <div class="flex items-baseline justify-between gap-4 pt-4">
+              <dt class="text-[15.5px] font-bold text-navy">Effective upgrade cost</dt>
+              <dd id="deal-effective-out" class="font-display tabular text-4xl font-bold tracking-[-0.03em] text-navy">$175,000</dd>
+            </div>
+          </dl>
+
+          <p class="mt-5 text-[12px] leading-relaxed text-ink-muted">
+            Illustrative 12.5% capital recovery scenario — not an actual buyback quote. Formal customer valuations are issued upon model and condition review.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Five Commercial Advantages — Asymmetric Dark Architectural Ledger -->
+  <section class="dark-surface relative overflow-hidden bg-navy py-20 text-ink-on-dark lg:py-26" aria-labelledby="partner-benefits-heading">
+    <div
+      class="pointer-events-none absolute -right-12 top-1/2 w-[360px] -translate-y-1/2 text-brass-light/[0.08]"
+      aria-hidden="true"
+    >
+      <BrandMark variant="watermark" theme="dark" class="h-auto w-full" />
+    </div>
+
+    <div class="relative mx-auto max-w-[1320px] px-6 lg:px-12">
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-5">
+          <h2 id="partner-benefits-heading" class="font-display text-3xl leading-[1.08] font-semibold tracking-[-0.025em] text-ink-on-dark sm:text-[42px]">
+            Commercial leverage for Canadian resellers and systems integrators
+          </h2>
+          <p class="mt-4 text-[16px] leading-relaxed text-muted-on-dark">
+            Introduce MG Enterprises early in the sales process — not after replacement devices are already purchased — to strengthen every enterprise mobility proposal.
+          </p>
+
+          <div class="mt-8 rounded-[6px] bg-brass-light p-7 text-navy">
+            <h3 class="font-display text-2xl font-bold tracking-[-0.02em]">
+              Working on a Spectralink or fleet refresh quote?
+            </h3>
+            <p class="mt-2.5 text-[15px] leading-relaxed text-navy/90">
+              Share your customer's outgoing device mix for a fast, confidential recovery assessment that drops directly into your proposal.
+            </p>
+            <a
+              href="/assessment?audience=partner"
+              class="mt-6 inline-flex items-center justify-center rounded-[3px] bg-navy px-5 py-3.5 text-[14.5px] font-semibold text-stone transition-colors hover:bg-navy-surface"
+            >
+              Submit Partner Opportunity
+            </a>
+          </div>
+        </div>
+
+        <div class="divide-y divide-white/12 lg:col-span-7 lg:pl-6">
+          {[
+            {
+              title: 'Reopen delayed refresh discussions',
+              body: 'Give budget-constrained Spectralink and enterprise mobility accounts a new funding consideration when replacement quotes stall.',
+            },
+            {
+              title: 'Offer equipment recovery inside hardware proposals',
+              body: 'Present new handset pricing alongside an upfront equipment buyback estimate to lower the net capital hurdle.',
+            },
+            {
+              title: 'Create conversations around maintenance and lifecycle services',
+              body: 'Pair proposals with customized 3-, 6-, and 12-month Spectralink bridge coverage while multi-site upgrades move through approval.',
+            },
+            {
+              title: 'Establish a financially supported modernization plan',
+              body: 'Equip your customer’s IT champion with clear capital-recovery math ready for procurement and finance leadership.',
+            },
+            {
+              title: 'Differentiate beyond hardware pricing alone',
+              body: 'Compete on total lifecycle value rather than racing to the bottom on unit margin.',
+            },
+          ].map((adv) => (
+            <div class="grid gap-3 py-6 first:pt-0 last:pb-0 sm:grid-cols-12 sm:items-baseline">
+              <h3 class="font-display text-xl font-semibold text-brass-light sm:col-span-5">
+                {adv.title}
+              </h3>
+              <p class="text-[15px] leading-relaxed text-muted-on-dark sm:col-span-7">
+                {adv.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const range = document.getElementById('deal-size-range') as HTMLInputElement | null;
+  const sizeOut = document.getElementById('deal-size-out');
+  const buybackOut = document.getElementById('deal-buyback-out');
+  const effOut = document.getElementById('deal-effective-out');
+
+  const fmt = (n: number) => '$' + Math.round(n).toLocaleString('en-CA');
+
+  range?.addEventListener('input', () => {
+    const deal = Number(range.value) || 200000;
+    const buyback = Math.round(deal * 0.125);
+    const effective = deal - buyback;
+    if (sizeOut) sizeOut.textContent = fmt(deal);
+    if (buybackOut) buybackOut.textContent = `− ${fmt(buyback)}`;
+    if (effOut) effOut.textContent = fmt(effective);
+  });
+</script>

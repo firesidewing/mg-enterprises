@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AssessmentForm from '../components/AssessmentForm.astro';
+import BrandMark from '../components/BrandMark.astro';
+---
+
+<BaseLayout
+  title="Request an Equipment Recovery Assessment — MG Enterprises"
+  description="Request a confidential Canadian enterprise device buyback valuation or customized 3-, 6-, or 12-month Spectralink maintenance quote from MG Enterprises."
+  activeNav="assessment"
+>
+  <section class="bg-stone pt-12 pb-22 lg:pt-16 lg:pb-28">
+    <div class="mx-auto max-w-[1320px] px-6 lg:px-12">
+      <div class="grid gap-12 lg:grid-cols-12 lg:items-start">
+        <div class="lg:col-span-5">
+          <h1 class="font-display text-4xl leading-[1.04] font-semibold tracking-[-0.03em] text-navy sm:text-[50px]">
+            Request an Equipment Recovery Assessment.
+          </h1>
+          <p class="mt-5 text-[16.5px] leading-relaxed text-ink-muted">
+            Share your outgoing fleet mix, maintenance needs, or upcoming upgrade timeline. MG Enterprises will review model eligibility and outline practical capital-recovery and Spectralink lifecycle options for your organization or customer.
+          </p>
+
+          <div class="mt-9 space-y-6 border-t border-stone-deep pt-8">
+            <div>
+              <h2 class="font-display text-xl font-semibold text-navy">Helpful details to include</h2>
+              <ul class="mt-3 space-y-2.5 text-[15px] text-ink-muted">
+                <li class="flex items-start gap-2.5">
+                  <svg class="mt-1 h-4 w-4 shrink-0 text-brass-deep" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  <span>Device makes and models (e.g., Spectralink 84-Series/Versity, iOS, Android, Zebra, Cisco)</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="mt-1 h-4 w-4 shrink-0 text-brass-deep" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  <span>Approximate device counts and how long the fleet has been in service</span>
+                </li>
+                <li class="flex items-start gap-2.5">
+                  <svg class="mt-1 h-4 w-4 shrink-0 text-brass-deep" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                  <span>Whether you need a 3-, 6-, or 12-month Spectralink maintenance bridge</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="rounded-[6px] bg-navy p-6 text-ink-on-dark">
+              <BrandMark variant="horizontal" theme="dark" />
+              <p class="mt-4 text-[14.5px] leading-relaxed text-muted-on-dark">
+                Serving enterprise IT, procurement leadership, healthcare, manufacturing, warehousing, retail, and channel partners across Canada.
+              </p>
+              <p class="mt-3 text-[12.5px] text-muted-on-dark/80">
+                All buyback offers, maintenance services, support commitments, and recycling arrangements are subject to eligibility and program terms.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <AssessmentForm />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

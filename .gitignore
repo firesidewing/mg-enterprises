@@ -1,0 +1,23 @@
+# Dependencies & build output
+node_modules/
+dist/
+.astro/
+.vercel/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# OS / Editor
+.DS_Store
+*.log
+
+# Impeccable runtime & local-only state (keep PRODUCT.md, DESIGN.md, config.json, surfaces/, design.json committed)
+.impeccable/config.local.json
+.impeccable/questions/
+.impeccable/mocks/
+.impeccable/review/
+.impeccable/reference/
+.impeccable/build/
+

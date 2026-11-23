@@ -1,0 +1,464 @@
+---
+import { AGE_BRACKETS, DEVICE_FAMILIES } from '../data/catalog';
+
+const formEndpoint = import.meta.env.PUBLIC_FORM_ENDPOINT || '';
+---
+
+<div
+  class="mg-assessment-form rounded-[6px] bg-stone-well p-6 sm:p-8 lg:p-10"
+  data-endpoint={formEndpoint}
+>
+  <!-- Pre-filled calculator banner (populated via JS when arriving from BuybackCalculator) -->
+  <div
+    id="prefill-banner"
+    class="mb-6 hidden rounded-[4px] bg-navy p-5 text-ink-on-dark"
+  >
+    <div class="flex flex-wrap items-start justify-between gap-4">
+      <div>
+        <p class="text-[12px] font-semibold tracking-[0.08em] text-brass-light uppercase">
+          Imported From Rough Buyback Calculator
+        </p>
+        <p id="prefill-summary" class="mt-1.5 text-[15px] font-medium text-ink-on-dark"></p>
+      </div>
+      <span id="prefill-est" class="font-display tabular text-xl font-bold text-brass-light"></span>
+    </div>
+  </div>
+
+  <form id="assessment-intake-form" class="space-y-6" novalidate>
+    <!-- Audience Selector -->
+    <fieldset>
+      <legend class="text-[13px] font-semibold tracking-[0.06em] text-ink-muted uppercase">
+        I am inquiring as
+      </legend>
+      <div class="mt-2.5 grid gap-3 sm:grid-cols-2">
+        <label class="flex cursor-pointer items-start gap-3 rounded-[4px] bg-stone p-4 transition-colors has-[:checked]:bg-navy has-[:checked]:text-stone">
+          <input
+            type="radio"
+            name="audience"
+            value="end-user"
+            checked
+            class="mt-1 h-4 w-4 accent-brass"
+          />
+          <span>
+            <strong class="block text-[15px] font-semibold">End-User Organization</strong>
+            <span class="mt-0.5 block text-[13px] opacity-80">IT, procurement, or operations managing our own fleet</span>
+          </span>
+        </label>
+
+        <label class="flex cursor-pointer items-start gap-3 rounded-[4px] bg-stone p-4 transition-colors has-[:checked]:bg-navy has-[:checked]:text-stone">
+          <input
+            type="radio"
+            name="audience"
+            value="partner"
+            class="mt-1 h-4 w-4 accent-brass"
+          />
+          <span>
+            <strong class="block text-[15px] font-semibold">Channel Partner / Integrator</strong>
+            <span class="mt-0.5 block text-[13px] opacity-80">Reseller or VAR evaluating buyback for a customer proposal</span>
+          </span>
+        </label>
+      </div>
+    </fieldset>
+
+    <!-- Primary Interest -->
+    <fieldset>
+      <legend class="text-[13px] font-semibold tracking-[0.06em] text-ink-muted uppercase">
+        Program Focus
+      </legend>
+      <div class="mt-2.5 grid gap-2.5 sm:grid-cols-2">
+        {[
+          { val: 'buyback', label: 'Enterprise Device Buyback' },
+          { val: 'maintenance', label: 'Spectralink 3 / 6 / 12-Mo Maintenance' },
+          { val: 'refresh', label: 'Technology Refresh & Offset Plan' },
+          { val: 'combined', label: 'Combined Buyback + Maintenance' },
+        ].map((opt, idx) => (
+          <label class="flex cursor-pointer items-center gap-2.5 rounded-[4px] bg-stone px-4 py-3 text-[14.5px] font-medium text-navy transition-colors hover:bg-alabaster has-[:checked]:bg-navy has-[:checked]:text-stone">
+            <input
+              type="radio"
+              name="program"
+              value={opt.val}
+              checked={idx === 0}
+              class="h-4 w-4 accent-brass"
+            />
+            <span>{opt.label}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+
+    <!-- Contact Details -->
+    <div class="grid gap-4 sm:grid-cols-2">
+      <div>
+        <label for="f-name" class="block text-[13px] font-semibold text-navy">
+          Full Name <span class="text-brass-deep">*</span>
+        </label>
+        <input
+          id="f-name"
+          name="name"
+          type="text"
+          required
+          autocomplete="name"
+          placeholder="Jordan Taylor"
+          class="mt-1.5 w-full rounded-[4px] bg-stone px-3.5 py-3 text-[15px] text-navy placeholder:text-ink-muted focus:bg-alabaster"
+        />
+      </div>
+
+      <div>
+        <label for="f-company" class="block text-[13px] font-semibold text-navy">
+          Organization / Partner Name <span class="text-brass-deep">*</span>
+        </label>
+        <input
+          id="f-company"
+          name="company"
+          type="text"
+          required
+          autocomplete="organization"
+          placeholder="e.g. Northshore Health"
+          class="mt-1.5 w-full rounded-[4px] bg-stone px-3.5 py-3 text-[15px] text-navy placeholder:text-ink-muted focus:bg-alabaster"
+        />
+      </div>
+
+      <div>
+        <label for="f-email" class="block text-[13px] font-semibold text-navy">
+          Work Email <span class="text-brass-deep">*</span>
+        </label>
+        <input
+          id="f-email"
+          name="email"
+          type="email"
+          required
+          autocomplete="email"
+          placeholder="name@organization.ca"
+          class="mt-1.5 w-full rounded-[4px] bg-stone px-3.5 py-3 text-[15px] text-navy placeholder:text-ink-muted focus:bg-alabaster"
+        />
+      </div>
+
+      <div>
+        <label for="f-phone" class="block text-[13px] font-semibold text-navy">
+          Phone Number (Optional)
+        </label>
+        <input
+          id="f-phone"
+          name="phone"
+          type="tel"
+          autocomplete="tel"
+          placeholder="(416) 555-0190"
+          class="mt-1.5 w-full rounded-[4px] bg-stone px-3.5 py-3 text-[15px] text-navy placeholder:text-ink-muted focus:bg-alabaster"
+        />
+      </div>
+    </div>
+
+    <!-- Fleet Snapshot -->
+    <div class="grid gap-4 sm:grid-cols-3">
+      <div>
+        <label for="f-family" class="block text-[13px] font-semibold text-navy">
+          Primary Device Family
+        </label>
+        <select
+          id="f-family"
+          name="family"
+          class="mt-1.5 w-full rounded-[4px] bg-stone px-3.5 py-3 text-[15px] font-medium text-navy focus:bg-alabaster"
+        >
+          {DEVICE_FAMILIES.map((f) => (
+            <option value={f.id}>{f.name}</option>
+          ))}
+          <option value="mixed-fleet">Mixed Multi-OEM Fleet</option>
+        </select>
+      </div>
+
+      <div>
+        <label for="f-qty" class="block text-[13px] font-semibold text-navy">
+          Estimated Quantity
+        </label>
+        <input
+          id="f-qty"
+          name="quantity"
+          type="number"
+          min="1"
+          max="50000"
+          value="250"
+          class="tabular mt-1.5 w-full rounded-[4px] bg-stone px-3.5 py-3 text-[15px] font-semibold text-navy focus:bg-alabaster"
+        />
+      </div>
+
+      <div>
+        <label for="f-age" class="block text-[13px] font-semibold text-navy">
+          Average Age Owned
+        </label>
+        <select
+          id="f-age"
+          name="age"
+          class="mt-1.5 w-full rounded-[4px] bg-stone px-3.5 py-3 text-[15px] font-medium text-navy focus:bg-alabaster"
+        >
+          {AGE_BRACKETS.map((a) => (
+            <option value={a.id} selected={a.id === '3-4'}>{a.label}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label for="f-details" class="block text-[13px] font-semibold text-navy">
+        Models, Contract Term, or Upgrade Timeline
+      </label>
+      <textarea
+        id="f-details"
+        name="details"
+        rows="4"
+        placeholder="Share specific makes/models (e.g., Spectralink 8440, Apple iPhone 13, Zebra TC52), desired 3/6/12-month maintenance window, or target refresh date..."
+        class="mt-1.5 w-full rounded-[4px] bg-stone px-3.5 py-3 text-[15px] text-navy placeholder:text-ink-muted focus:bg-alabaster"
+      ></textarea>
+    </div>
+
+    <input type="hidden" name="illustrativeEstimate" id="f-est-hidden" value="" />
+
+    <div
+      id="form-error"
+      role="alert"
+      class="hidden rounded-[4px] bg-[#7A1E1E] px-4 py-3 text-[14px] font-medium text-white"
+    ></div>
+
+    <div class="flex flex-col gap-3 pt-2 sm:flex-row sm:items-center sm:justify-between">
+      <button
+        type="submit"
+        id="form-submit-btn"
+        class="inline-flex cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-[3px] bg-navy px-7 py-4 text-[15px] font-semibold text-stone transition-colors hover:bg-navy-surface disabled:opacity-60"
+      >
+        Submit Recovery Request
+        <svg class="h-4 w-4 shrink-0" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3.5 8h9m0 0-3.5-3.5M12.5 8 9 11.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+
+      <p class="text-[12.5px] text-ink-muted">
+        All assessments are confidential and non-binding.
+      </p>
+    </div>
+  </form>
+
+  <!-- Confirmation Receipt -->
+  <div id="form-success" class="hidden space-y-5">
+    <div class="rounded-[4px] bg-navy p-6 text-ink-on-dark">
+      <h3 class="font-display text-2xl font-semibold text-ink-on-dark">
+        Assessment request ready for review.
+      </h3>
+      <p id="success-message" class="mt-2 text-[15px] leading-relaxed text-muted-on-dark"></p>
+    </div>
+
+    <div class="rounded-[4px] bg-stone p-5">
+      <p class="text-[12.5px] font-semibold tracking-[0.06em] text-ink-muted uppercase">
+        Submission Summary
+      </p>
+      <pre id="success-summary" class="mt-2.5 overflow-x-auto whitespace-pre-wrap font-sans text-[14px] leading-relaxed text-navy"></pre>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+      <button
+        type="button"
+        id="copy-summary-btn"
+        class="cursor-pointer rounded-[3px] bg-navy px-5 py-3 text-[14px] font-semibold text-stone transition-colors hover:bg-navy-surface"
+      >
+        Copy Summary
+      </button>
+      <button
+        type="button"
+        id="reset-form-btn"
+        class="cursor-pointer rounded-[3px] bg-stone px-5 py-3 text-[14px] font-semibold text-navy transition-colors hover:bg-alabaster"
+      >
+        Start Another Assessment
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const wrapper = document.querySelector<HTMLElement>('.mg-assessment-form');
+  const form = document.getElementById('assessment-intake-form') as HTMLFormElement | null;
+  const errorBox = document.getElementById('form-error');
+  const submitBtn = document.getElementById('form-submit-btn') as HTMLButtonElement | null;
+  const successBox = document.getElementById('form-success');
+  const successMsg = document.getElementById('success-message');
+  const successSummary = document.getElementById('success-summary');
+  const prefillBanner = document.getElementById('prefill-banner');
+  const prefillSummary = document.getElementById('prefill-summary');
+  const prefillEst = document.getElementById('prefill-est');
+
+  // Pre-fill from URL query parameters (e.g. from calculator or nav links)
+  const params = new URLSearchParams(window.location.search);
+  const audienceParam = params.get('audience');
+  const typeParam = params.get('type');
+  const familyParam = params.get('family');
+  const qtyParam = params.get('qty');
+  const ageParam = params.get('age');
+  const estParam = params.get('est');
+  const modelParam = params.get('model');
+  const docketParam = params.get('docket');
+
+  if (audienceParam && form) {
+    const radio = form.querySelector<HTMLInputElement>(`input[name="audience"][value="${audienceParam}"]`);
+    if (radio) radio.checked = true;
+  }
+  if (typeParam && form) {
+    const radio = form.querySelector<HTMLInputElement>(`input[name="program"][value="${typeParam}"]`);
+    if (radio) radio.checked = true;
+  }
+  if (familyParam) {
+    const sel = document.getElementById('f-family') as HTMLSelectElement | null;
+    if (sel) sel.value = familyParam;
+  }
+  if (qtyParam) {
+    const inp = document.getElementById('f-qty') as HTMLInputElement | null;
+    if (inp) inp.value = qtyParam;
+  }
+  if (ageParam) {
+    const sel = document.getElementById('f-age') as HTMLSelectElement | null;
+    if (sel) sel.value = ageParam;
+  }
+  if (docketParam || modelParam) {
+    const txt = document.getElementById('f-details') as HTMLTextAreaElement | null;
+    if (txt) {
+      txt.value = docketParam
+        ? `Fleet docket from calculator:\n${docketParam}`
+        : `Specific model noted: ${modelParam}`;
+    }
+  }
+  const familyLabels: Record<string, string> = {
+    spectralink: 'Spectralink',
+    'apple-ios': 'Apple iOS',
+    android: 'Android Enterprise',
+    zebra: 'Zebra',
+    cisco: 'Cisco',
+    'other-oem': 'Ascom / Mitel / Avaya / NEC',
+    'mixed-fleet': 'Mixed Multi-OEM Fleet',
+  };
+  const ageLabels: Record<string, string> = {
+    'under-2': 'Under 2 yrs',
+    '2-3': '2–3 yrs',
+    '3-4': '3–4 yrs',
+    '4-5': '4–5 yrs',
+    '5-plus': '5+ yrs',
+  };
+
+  if (estParam && prefillBanner && prefillSummary && prefillEst) {
+    const [lo, hi] = estParam.split('-').map(Number);
+    const estDisplay =
+      Number.isFinite(lo) && Number.isFinite(hi)
+        ? `$${lo.toLocaleString('en-CA')} – $${hi.toLocaleString('en-CA')} CAD`
+        : estParam;
+    const estHidden = document.getElementById('f-est-hidden') as HTMLInputElement | null;
+    if (estHidden) estHidden.value = estDisplay;
+    const famName = familyLabels[familyParam || 'spectralink'] || 'Spectralink';
+    const ageName = ageLabels[ageParam || '3-4'] || '3–4 yrs';
+    prefillSummary.textContent = docketParam
+      ? docketParam
+      : `${qtyParam || '250'} units · ${famName} · ${ageName}`;
+    prefillEst.textContent = estDisplay;
+    prefillBanner.classList.remove('hidden');
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form) return;
+
+    const data = new FormData(form);
+    const name = String(data.get('name') || '').trim();
+    const company = String(data.get('company') || '').trim();
+    const email = String(data.get('email') || '').trim();
+
+    if (!name || !company || !email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      if (errorBox) {
+        errorBox.textContent = 'Please provide your name, organization name, and a valid work email so MG Enterprises can prepare your assessment.';
+        errorBox.classList.remove('hidden');
+      }
+      return;
+    }
+
+    errorBox?.classList.add('hidden');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Preparing request…';
+    }
+
+    const payload = {
+      audience: String(data.get('audience') || 'end-user'),
+      program: String(data.get('program') || 'buyback'),
+      name,
+      company,
+      email,
+      phone: String(data.get('phone') || '').trim(),
+      family: String(data.get('family') || ''),
+      quantity: String(data.get('quantity') || ''),
+      age: String(data.get('age') || ''),
+      illustrativeEstimate: String(data.get('illustrativeEstimate') || ''),
+      details: String(data.get('details') || '').trim(),
+    };
+
+    const endpoint = wrapper?.dataset.endpoint?.trim();
+    let deliveredLive = false;
+
+    if (endpoint) {
+      try {
+        const resp = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!resp.ok) throw new Error('Submission endpoint returned an error.');
+        deliveredLive = true;
+      } catch {
+        if (errorBox) {
+          errorBox.textContent = 'We could not reach the submission endpoint right now. Please try again or copy your fleet summary below.';
+          errorBox.classList.remove('hidden');
+        }
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Equipment Recovery Request';
+        }
+        return;
+      }
+    }
+
+    const lines = [
+      `Contact: ${payload.name} (${payload.company})`,
+      `Email: ${payload.email}${payload.phone ? ` · Phone: ${payload.phone}` : ''}`,
+      `Role: ${payload.audience === 'partner' ? 'Channel Partner / Systems Integrator' : 'End-User Organization'}`,
+      `Program: ${payload.program}`,
+      `Fleet: ${payload.quantity} units · ${payload.family} · ${payload.age} yrs`,
+      payload.illustrativeEstimate ? `Calculator Rough Estimate: ${payload.illustrativeEstimate} (illustrative)` : null,
+      payload.details ? `Notes: ${payload.details}` : null,
+    ].filter(Boolean);
+
+    if (successSummary) successSummary.textContent = lines.join('\n');
+    if (successMsg) {
+      successMsg.textContent = deliveredLive
+        ? 'Your Equipment Recovery Assessment request has been transmitted to MG Enterprises. A lifecycle advisor will respond with next steps.'
+        : 'Preview mode active (ready for Vercel Resend/Formspree endpoint wiring via PUBLIC_FORM_ENDPOINT). Your structured fleet summary is ready below.';
+    }
+
+    form.classList.add('hidden');
+    prefillBanner?.classList.add('hidden');
+    successBox?.classList.remove('hidden');
+  });
+
+  document.getElementById('copy-summary-btn')?.addEventListener('click', async (e) => {
+    const btn = e.currentTarget as HTMLButtonElement;
+    if (!successSummary) return;
+    try {
+      await navigator.clipboard.writeText(successSummary.textContent || '');
+      btn.textContent = 'Copied to Clipboard';
+      setTimeout(() => { btn.textContent = 'Copy Summary'; }, 2200);
+    } catch {
+      btn.textContent = 'Select text above to copy';
+    }
+  });
+
+  document.getElementById('reset-form-btn')?.addEventListener('click', () => {
+    form?.reset();
+    form?.classList.remove('hidden');
+    successBox?.classList.add('hidden');
+    if (submitBtn) {
+      submitBtn.disabled = false;
+      submitBtn.textContent = 'Submit Equipment Recovery Request';
+    }
+  });
+</script>

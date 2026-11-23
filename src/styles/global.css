@@ -1,0 +1,181 @@
+@import "tailwindcss";
+@import "@fontsource-variable/bricolage-grotesque";
+@import "@fontsource-variable/hanken-grotesk";
+
+@theme {
+  --color-stone: #F0EDE6;
+  --color-stone-subtle: #EAE6DD;
+  --color-stone-well: #E4DFD4;
+  --color-stone-deep: #D6D0C2;
+  --color-alabaster: #F7F5F0;
+
+  --color-navy: #0B1D35;
+  --color-navy-deep: #071426;
+  --color-navy-surface: #132A4A;
+  --color-navy-elevated: #1B385F;
+  --color-navy-ink: #173862;
+
+  --color-brass: #B9862D;
+  --color-brass-deep: #785212;
+  --color-brass-light: #DFB768;
+  --color-brass-pale: #F1D79B;
+
+  --color-ink: #0B1D35;
+  --color-ink-muted: #465362;
+  --color-ink-on-dark: #F4F1EA;
+  --color-muted-on-dark: #B6C3D4;
+
+  --font-display: "Bricolage Grotesque Variable", "Bricolage Grotesque", system-ui, sans-serif;
+  --font-sans: "Hanken Grotesk Variable", "Hanken Grotesk", system-ui, sans-serif;
+
+  --ease-architectural: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  color-scheme: light;
+  --stone: #F0EDE6;
+  --stone-well: #E4DFD4;
+  --stone-deep: #D6D0C2;
+  --navy: #0B1D35;
+  --navy-surface: #132A4A;
+  --brass: #B9862D;
+  --brass-deep: #785212;
+  --brass-light: #DFB768;
+  --ink: #0B1D35;
+  --ink-muted: #465362;
+}
+
+html {
+  background-color: var(--stone);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--stone);
+  color: var(--ink);
+  min-height: 100dvh;
+  overflow-x: clip;
+  caret-color: var(--brass);
+}
+
+/* Browser surface theming */
+::selection {
+  background-color: #0B1D35;
+  color: #DFB768;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #E4DFD4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8D959E;
+  border: 2px solid #E4DFD4;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0B1D35;
+}
+
+:focus-visible {
+  outline: 2px solid #785212;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.dark-surface :focus-visible {
+  outline-color: #DFB768;
+}
+
+a {
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1.5px;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  text-wrap: balance;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bespoke architectural brushed-brass range input */
+input[type="range"].brass-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #CFC8B9;
+  cursor: pointer;
+}
+
+input[type="range"].brass-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0B1D35;
+  border: 3px solid #DFB768;
+  box-shadow: 0 3px 10px rgba(11, 29, 53, 0.24);
+  transition: transform 180ms var(--ease-architectural), background-color 180ms ease;
+}
+
+input[type="range"].brass-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+  background: #132A4A;
+}
+
+input[type="range"].brass-slider::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #0B1D35;
+  border: 3px solid #DFB768;
+  box-shadow: 0 3px 10px rgba(11, 29, 53, 0.24);
+  transition: transform 180ms var(--ease-architectural);
+}
+
+/* Signature 55-degree architectural hairline echoed from the MG monogram diagonal join */
+.mg-slash-divider {
+  display: inline-block;
+  width: 1.5px;
+  height: 1.05em;
+  background: linear-gradient(180deg, #DFB768, #B9862D);
+  transform: rotate(32deg);
+  vertical-align: -0.14em;
+  margin-inline: 0.55em;
+  flex-shrink: 0;
+}
+
+/* Smooth architectural SVG transitions for the interactive lifecycle curve */
+.mg-curve-guide,
+.mg-curve-ring,
+.mg-curve-dot {
+  transition: all 340ms var(--ease-architectural);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

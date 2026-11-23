@@ -1,0 +1,325 @@
+---
+import { LIFECYCLE_STAGES } from '../data/catalog';
+import BrandMark from './BrandMark.astro';
+
+const stagesJson = JSON.stringify(LIFECYCLE_STAGES);
+
+// SVG plot coordinates for the 5 lifecycle years inside viewBox 0 0 640 270
+const points = [
+  { x: 56, y: 58, year: 1 },
+  { x: 188, y: 102, year: 2 },
+  { x: 320, y: 146, year: 3 },
+  { x: 452, y: 184, year: 4 },
+  { x: 584, y: 212, year: 5 },
+];
+const defaultStage = LIFECYCLE_STAGES[2]; // Year 3 — Recommended Assessment Point
+---
+
+<section
+  class="dark-surface relative overflow-hidden bg-navy py-16 text-ink-on-dark lg:py-24"
+  aria-labelledby="lifecycle-heading"
+>
+  <!-- Subtle architectural MG monogram geometry -->
+  <div
+    class="pointer-events-none absolute -top-12 -right-24 w-[520px] text-brass-light/[0.045]"
+    aria-hidden="true"
+  >
+    <BrandMark variant="watermark" theme="dark" class="h-auto w-full" />
+  </div>
+
+  <div
+    class="mg-lifecycle relative mx-auto max-w-[1320px] px-6 lg:px-12"
+    data-stages={stagesJson}
+  >
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <h2
+          id="lifecycle-heading"
+          class="font-display text-3xl leading-[1.06] font-semibold tracking-[-0.025em] text-ink-on-dark sm:text-4xl lg:text-[44px]"
+        >
+          Timing unlocks capital. Waiting turns hardware into sunk cost.
+        </h2>
+      </div>
+      <div class="lg:col-span-5">
+        <p class="text-[16px] leading-relaxed text-muted-on-dark">
+          Select any ownership year below to see how enterprise mobile residual value evolves — and where early buyback assessments and 3-, 6-, or 12-month Spectralink bridge contracts protect your budget.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 grid gap-8 lg:grid-cols-12 lg:items-stretch">
+      <!-- Interactive SVG Curve Canvas -->
+      <div class="min-w-0 rounded-[6px] bg-navy-surface p-5 sm:p-7 lg:col-span-7">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-[13px] text-muted-on-dark">
+          <span class="font-semibold text-ink-on-dark">Illustrative Fleet Residual Value Curve</span>
+          <span class="text-brass-light">Click or select a fleet year</span>
+        </div>
+
+        <div class="mt-4">
+          <svg
+            viewBox="0 0 640 270"
+            class="h-auto w-full select-none"
+            role="img"
+            aria-label="Interactive five-year enterprise device residual value curve showing buyback window and Spectralink maintenance bridge"
+          >
+            <defs>
+              <linearGradient id="mg-curve-fill" x1="0" y1="0" x2="0" y2="250" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#DFB768" stop-opacity="0.30" />
+                <stop offset="100%" stop-color="#DFB768" stop-opacity="0.0" />
+              </linearGradient>
+              <linearGradient id="mg-bridge-zone" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#DFB768" stop-opacity="0.06" />
+                <stop offset="50%" stop-color="#DFB768" stop-opacity="0.14" />
+                <stop offset="100%" stop-color="#DFB768" stop-opacity="0.06" />
+              </linearGradient>
+            </defs>
+
+            <!-- Quiet horizontal reference lines -->
+            <line x1="32" y1="58" x2="612" y2="58" stroke="#FFFFFF" stroke-opacity="0.07" />
+            <line x1="32" y1="112" x2="612" y2="112" stroke="#FFFFFF" stroke-opacity="0.07" />
+            <line x1="32" y1="166" x2="612" y2="166" stroke="#FFFFFF" stroke-opacity="0.07" />
+            <line x1="32" y1="220" x2="612" y2="220" stroke="#FFFFFF" stroke-opacity="0.12" />
+
+            <!-- Highlighted Spectralink Bridge & Recovery Window (Years 3-5) -->
+            <rect x="320" y="28" width="264" height="192" rx="4" fill="url(#mg-bridge-zone)" />
+            <text
+              x="452"
+              y="46"
+              text-anchor="middle"
+              fill="#DFB768"
+              font-size="11.5"
+              font-weight="600"
+              letter-spacing="0.08em"
+            >
+              BUYBACK + 3/6/12-MO BRIDGE ZONE
+            </text>
+
+            <!-- Area & Smooth Curve -->
+            <path
+              d="M56 58 C122 80, 140 88, 188 102 C244 118, 268 130, 320 146 C376 163, 404 172, 452 184 C508 197, 540 204, 584 212 L584 220 L56 220 Z"
+              fill="url(#mg-curve-fill)"
+            />
+            <path
+              d="M56 58 C122 80, 140 88, 188 102 C244 118, 268 130, 320 146 C376 163, 404 172, 452 184 C508 197, 540 204, 584 212"
+              fill="none"
+              stroke="#DFB768"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+
+            <!-- Active vertical guide line -->
+            <line
+              data-curve-guide
+              class="mg-curve-guide"
+              x1="320"
+              y1="56"
+              x2="320"
+              y2="220"
+              stroke="#DFB768"
+              stroke-width="1.5"
+              stroke-dasharray="4 4"
+              stroke-opacity="0.7"
+            />
+
+            <!-- Interactive Year Nodes -->
+            {points.map((pt, i) => (
+              <g
+                class="cursor-pointer"
+                data-node-index={i}
+                role="button"
+                tabindex="0"
+                aria-label={`Inspect ${LIFECYCLE_STAGES[i].label}: ${LIFECYCLE_STAGES[i].phase}`}
+              >
+                <circle cx={pt.x} cy={pt.y} r="20" fill="transparent" />
+                <circle
+                  data-node-ring={i}
+                  class="mg-curve-ring"
+                  cx={pt.x}
+                  cy={pt.y}
+                  r={i === 2 ? '13' : '0'}
+                  fill="#DFB768"
+                  fill-opacity="0.22"
+                />
+                <circle
+                  data-node-dot={i}
+                  class="mg-curve-dot"
+                  cx={pt.x}
+                  cy={pt.y}
+                  r={i === 2 ? '6.5' : '4.5'}
+                  fill={i === 2 ? '#DFB768' : '#0B1D35'}
+                  stroke="#DFB768"
+                  stroke-width="2.5"
+                />
+                <text
+                  x={pt.x}
+                  y="246"
+                  text-anchor="middle"
+                  data-node-label={i}
+                  fill={i === 2 ? '#DFB768' : '#B6C3D4'}
+                  font-size="13"
+                  font-weight={i === 2 ? '700' : '500'}
+                >
+                  {LIFECYCLE_STAGES[i].label}
+                </text>
+              </g>
+            ))}
+          </svg>
+        </div>
+
+        <!-- Direct stage selector buttons for rapid keyboard & touch scrubbing -->
+        <div class="mt-4 grid grid-cols-5 gap-2" role="tablist" aria-label="Fleet ownership year">
+          {LIFECYCLE_STAGES.map((stage, idx) => (
+            <button
+              type="button"
+              role="tab"
+              aria-selected={idx === 2 ? 'true' : 'false'}
+              data-stage-btn={idx}
+              class:list={[
+                'cursor-pointer rounded-[3px] px-2 py-2.5 text-center text-[13px] font-semibold transition-colors duration-150 tabular',
+                idx === 2
+                  ? 'bg-brass-light text-navy'
+                  : 'bg-navy text-muted-on-dark hover:bg-navy-elevated hover:text-ink-on-dark',
+              ]}
+            >
+              {stage.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Synchronized Stage Readout Panel -->
+      <div class="flex min-w-0 flex-col justify-between rounded-[6px] bg-navy-surface p-6 sm:p-8 lg:col-span-5">
+        <div>
+          <div class="flex items-baseline justify-between gap-4 border-b border-white/10 pb-5">
+            <div>
+              <h3 class="font-display text-2xl font-semibold tracking-[-0.02em] text-ink-on-dark sm:text-[28px]" data-stage-phase>
+                {defaultStage.label} — {defaultStage.phase}
+              </h3>
+              <p class="mt-1.5 text-[13px] font-semibold text-brass-light" data-stage-status>
+                {defaultStage.status}
+              </p>
+            </div>
+            <div class="shrink-0 text-right">
+              <span class="block font-display tabular text-4xl font-bold tracking-[-0.03em] text-brass-light" data-stage-pct>
+                ~{defaultStage.residualPct}%
+              </span>
+              <span class="text-[11.5px] text-muted-on-dark">illustrative retention</span>
+            </div>
+          </div>
+
+          <p class="mt-6 text-[16px] leading-relaxed text-ink-on-dark/90" data-stage-summary>
+            {defaultStage.summary}
+          </p>
+
+          <div class="mt-6 rounded-[4px] bg-navy p-4">
+            <p class="text-[12px] font-semibold tracking-[0.08em] text-brass-light uppercase">
+              Recommended MG Enterprises Action
+            </p>
+            <p class="mt-1.5 text-[14.5px] leading-relaxed text-muted-on-dark" data-stage-bridge>
+              {defaultStage.bridgeNote}
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 flex flex-wrap items-center gap-4 pt-2">
+          <a
+            href="/assessment"
+            class="inline-flex items-center gap-2 rounded-[3px] bg-brass-light px-5 py-3 text-[14.5px] font-semibold text-navy transition-colors hover:bg-brass-pale"
+          >
+            Assess Your Fleet Timing
+          </a>
+          <a
+            href="/maintenance"
+            class="text-[14.5px] font-semibold text-ink-on-dark underline decoration-brass-light hover:text-brass-light"
+          >
+            3 / 6 / 12-Month Spectralink Contracts
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  interface Stage {
+    year: number;
+    label: string;
+    phase: string;
+    residualPct: number;
+    status: string;
+    summary: string;
+    bridgeNote: string;
+  }
+
+  const coords = [
+    { x: 56, y: 58 },
+    { x: 188, y: 102 },
+    { x: 320, y: 146 },
+    { x: 452, y: 184 },
+    { x: 584, y: 212 },
+  ];
+
+  document.querySelectorAll<HTMLElement>('.mg-lifecycle').forEach((root) => {
+    const stages: Stage[] = JSON.parse(root.dataset.stages || '[]');
+    const guide = root.querySelector<SVGLineElement>('[data-curve-guide]');
+    const statusEl = root.querySelector<HTMLElement>('[data-stage-status]');
+    const phaseEl = root.querySelector<HTMLElement>('[data-stage-phase]');
+    const pctEl = root.querySelector<HTMLElement>('[data-stage-pct]');
+    const summaryEl = root.querySelector<HTMLElement>('[data-stage-summary]');
+    const bridgeEl = root.querySelector<HTMLElement>('[data-stage-bridge]');
+
+    function selectStage(idx: number) {
+      const stage = stages[idx];
+      const pt = coords[idx];
+      if (!stage || !pt) return;
+
+      if (guide) {
+        guide.setAttribute('x1', String(pt.x));
+        guide.setAttribute('x2', String(pt.x));
+      }
+
+      stages.forEach((_, i) => {
+        const active = i === idx;
+        const ring = root.querySelector<SVGCircleElement>(`[data-node-ring="${i}"]`);
+        const dot = root.querySelector<SVGCircleElement>(`[data-node-dot="${i}"]`);
+        const lbl = root.querySelector<SVGTextElement>(`[data-node-label="${i}"]`);
+        const btn = root.querySelector<HTMLButtonElement>(`[data-stage-btn="${i}"]`);
+
+        ring?.setAttribute('r', active ? '13' : '0');
+        dot?.setAttribute('r', active ? '6.5' : '4.5');
+        dot?.setAttribute('fill', active ? '#DFB768' : '#0B1D35');
+        lbl?.setAttribute('fill', active ? '#DFB768' : '#B6C3D4');
+        lbl?.setAttribute('font-weight', active ? '700' : '500');
+
+        if (btn) {
+          btn.setAttribute('aria-selected', String(active));
+          btn.className = `cursor-pointer rounded-[3px] px-2 py-2.5 text-center text-[13px] font-semibold transition-colors duration-150 tabular ${
+            active
+              ? 'bg-brass-light text-navy'
+              : 'bg-navy text-muted-on-dark hover:bg-navy-elevated hover:text-ink-on-dark'
+          }`;
+        }
+      });
+
+      if (statusEl) statusEl.textContent = stage.status;
+      if (phaseEl) phaseEl.textContent = `${stage.label} — ${stage.phase}`;
+      if (pctEl) pctEl.textContent = `~${stage.residualPct}%`;
+      if (summaryEl) summaryEl.textContent = stage.summary;
+      if (bridgeEl) bridgeEl.textContent = stage.bridgeNote;
+    }
+
+    root.querySelectorAll<HTMLButtonElement>('[data-stage-btn]').forEach((btn) => {
+      btn.addEventListener('click', () => selectStage(Number(btn.dataset.stageBtn)));
+    });
+
+    root.querySelectorAll<SVGGElement>('[data-node-index]').forEach((node) => {
+      node.addEventListener('click', () => selectStage(Number(node.dataset.nodeIndex)));
+      node.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          selectStage(Number(node.dataset.nodeIndex));
+        }
+      });
+    });
+  });
+</script>

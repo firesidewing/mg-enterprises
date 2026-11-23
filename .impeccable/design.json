@@ -1,0 +1,432 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-23T22:45:00Z",
+  "title": "Design System: MG Enterprises",
+  "extensions": {
+    "colorMeta": {
+      "navy": {
+        "role": "primary",
+        "displayName": "Midnight Navy",
+        "canonical": "oklch(22.6% 0.056 254)",
+        "tonalRamp": [
+          "oklch(15% 0.036 254)",
+          "oklch(22.6% 0.056 254)",
+          "oklch(32% 0.068 254)",
+          "oklch(44% 0.072 254)",
+          "oklch(58% 0.062 254)",
+          "oklch(72% 0.044 254)",
+          "oklch(85% 0.024 254)",
+          "oklch(95% 0.008 254)"
+        ]
+      },
+      "navy-surface": {
+        "role": "primary",
+        "displayName": "Deep Slate Navy",
+        "canonical": "oklch(28.5% 0.067 254)",
+        "tonalRamp": [
+          "oklch(16% 0.042 254)",
+          "oklch(24% 0.058 254)",
+          "oklch(28.5% 0.067 254)",
+          "oklch(42% 0.074 254)",
+          "oklch(56% 0.064 254)",
+          "oklch(70% 0.046 254)",
+          "oklch(84% 0.024 254)",
+          "oklch(95% 0.008 254)"
+        ]
+      },
+      "navy-elevated": {
+        "role": "primary",
+        "displayName": "Elevated Navy",
+        "canonical": "oklch(34.2% 0.077 254)",
+        "tonalRamp": [
+          "oklch(17% 0.046 254)",
+          "oklch(26% 0.064 254)",
+          "oklch(34.2% 0.077 254)",
+          "oklch(46% 0.078 254)",
+          "oklch(59% 0.066 254)",
+          "oklch(73% 0.046 254)",
+          "oklch(86% 0.024 254)",
+          "oklch(95% 0.008 254)"
+        ]
+      },
+      "brass": {
+        "role": "secondary",
+        "displayName": "Brushed Brass",
+        "canonical": "oklch(65.4% 0.122 81)",
+        "tonalRamp": [
+          "oklch(18% 0.042 81)",
+          "oklch(30% 0.068 81)",
+          "oklch(44% 0.095 81)",
+          "oklch(56% 0.114 81)",
+          "oklch(65.4% 0.122 81)",
+          "oklch(78% 0.102 81)",
+          "oklch(88% 0.062 81)",
+          "oklch(96% 0.022 81)"
+        ]
+      },
+      "brass-deep": {
+        "role": "secondary",
+        "displayName": "Burnished Brass Deep",
+        "canonical": "oklch(46.8% 0.095 79)",
+        "tonalRamp": [
+          "oklch(16% 0.036 79)",
+          "oklch(28% 0.062 79)",
+          "oklch(38% 0.082 79)",
+          "oklch(46.8% 0.095 79)",
+          "oklch(60% 0.106 79)",
+          "oklch(74% 0.086 79)",
+          "oklch(86% 0.052 79)",
+          "oklch(95% 0.018 79)"
+        ]
+      },
+      "brass-light": {
+        "role": "secondary",
+        "displayName": "Satin Brass Light",
+        "canonical": "oklch(79.4% 0.108 86)",
+        "tonalRamp": [
+          "oklch(18% 0.038 86)",
+          "oklch(31% 0.064 86)",
+          "oklch(45% 0.088 86)",
+          "oklch(59% 0.104 86)",
+          "oklch(71% 0.112 86)",
+          "oklch(79.4% 0.108 86)",
+          "oklch(89% 0.064 86)",
+          "oklch(96% 0.022 86)"
+        ]
+      },
+      "brass-pale": {
+        "role": "secondary",
+        "displayName": "Pale Brass Highlight",
+        "canonical": "oklch(88.2% 0.086 90)",
+        "tonalRamp": [
+          "oklch(18% 0.034 90)",
+          "oklch(32% 0.058 90)",
+          "oklch(46% 0.078 90)",
+          "oklch(61% 0.092 90)",
+          "oklch(74% 0.096 90)",
+          "oklch(83% 0.092 90)",
+          "oklch(88.2% 0.086 90)",
+          "oklch(96% 0.026 90)"
+        ]
+      },
+      "stone": {
+        "role": "neutral",
+        "displayName": "Honed Limestone",
+        "canonical": "oklch(94.6% 0.011 86)",
+        "tonalRamp": [
+          "oklch(18% 0.006 86)",
+          "oklch(32% 0.008 86)",
+          "oklch(48% 0.010 86)",
+          "oklch(64% 0.012 86)",
+          "oklch(78% 0.014 86)",
+          "oklch(88% 0.014 86)",
+          "oklch(94.6% 0.011 86)",
+          "oklch(97.5% 0.006 86)"
+        ]
+      },
+      "stone-subtle": {
+        "role": "neutral",
+        "displayName": "Subtle Limestone",
+        "canonical": "oklch(92.6% 0.014 86)",
+        "tonalRamp": [
+          "oklch(17% 0.006 86)",
+          "oklch(31% 0.009 86)",
+          "oklch(47% 0.012 86)",
+          "oklch(63% 0.014 86)",
+          "oklch(77% 0.016 86)",
+          "oklch(87% 0.015 86)",
+          "oklch(92.6% 0.014 86)",
+          "oklch(97% 0.007 86)"
+        ]
+      },
+      "stone-well": {
+        "role": "neutral",
+        "displayName": "Matte Stone Well",
+        "canonical": "oklch(90.6% 0.017 85)",
+        "tonalRamp": [
+          "oklch(17% 0.007 85)",
+          "oklch(31% 0.010 85)",
+          "oklch(46% 0.014 85)",
+          "oklch(62% 0.017 85)",
+          "oklch(76% 0.019 85)",
+          "oklch(85% 0.018 85)",
+          "oklch(90.6% 0.017 85)",
+          "oklch(96.5% 0.008 85)"
+        ]
+      },
+      "stone-deep": {
+        "role": "neutral",
+        "displayName": "Carved Stone Divider",
+        "canonical": "oklch(86.0% 0.021 86)",
+        "tonalRamp": [
+          "oklch(16% 0.008 86)",
+          "oklch(30% 0.012 86)",
+          "oklch(45% 0.016 86)",
+          "oklch(60% 0.020 86)",
+          "oklch(74% 0.022 86)",
+          "oklch(86.0% 0.021 86)",
+          "oklch(92% 0.014 86)",
+          "oklch(97% 0.007 86)"
+        ]
+      },
+      "alabaster": {
+        "role": "neutral",
+        "displayName": "Warm Alabaster",
+        "canonical": "oklch(97.0% 0.007 85)",
+        "tonalRamp": [
+          "oklch(18% 0.004 85)",
+          "oklch(34% 0.006 85)",
+          "oklch(50% 0.007 85)",
+          "oklch(66% 0.008 85)",
+          "oklch(80% 0.009 85)",
+          "oklch(90% 0.009 85)",
+          "oklch(94.5% 0.008 85)",
+          "oklch(97.0% 0.007 85)"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Slate Steel Muted",
+        "canonical": "oklch(44.2% 0.027 251)",
+        "tonalRamp": [
+          "oklch(16% 0.016 251)",
+          "oklch(28% 0.022 251)",
+          "oklch(44.2% 0.027 251)",
+          "oklch(56% 0.028 251)",
+          "oklch(68% 0.024 251)",
+          "oklch(80% 0.017 251)",
+          "oklch(90% 0.010 251)",
+          "oklch(96% 0.004 251)"
+        ]
+      },
+      "ink-on-dark": {
+        "role": "neutral",
+        "displayName": "Warm Chalk Ink",
+        "canonical": "oklch(95.9% 0.010 85)",
+        "tonalRamp": [
+          "oklch(18% 0.005 85)",
+          "oklch(34% 0.007 85)",
+          "oklch(50% 0.009 85)",
+          "oklch(66% 0.010 85)",
+          "oklch(80% 0.011 85)",
+          "oklch(89% 0.011 85)",
+          "oklch(95.9% 0.010 85)",
+          "oklch(98% 0.005 85)"
+        ]
+      },
+      "muted-on-dark": {
+        "role": "neutral",
+        "displayName": "Cool Slate On-Dark",
+        "canonical": "oklch(81.0% 0.027 251)",
+        "tonalRamp": [
+          "oklch(16% 0.016 251)",
+          "oklch(29% 0.022 251)",
+          "oklch(43% 0.027 251)",
+          "oklch(57% 0.030 251)",
+          "oklch(70% 0.030 251)",
+          "oklch(81.0% 0.027 251)",
+          "oklch(90% 0.016 251)",
+          "oklch(96% 0.006 251)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Opening hero H1 statements across landing and interior pages (38px mobile to 62px xl)."
+      },
+      "metric": {
+        "displayName": "Monumental Metric",
+        "purpose": "Tabular dollar recovery lead and effective refresh figures inside interactive calculators and ledgers."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section H2 anchors across limestone and midnight-navy bands (30px to 44px)."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Solution cards, ledger items, panel titles, and interactive stage headers (20px to 28px)."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Advisory prose, capability lists, and captions constrained to 56ch-62ch measure."
+      },
+      "label": {
+        "displayName": "Operational Label",
+        "purpose": "Tracked uppercase form legends, metric sub-labels, and footer directory headings—never hero kickers."
+      }
+    },
+    "shadows": [
+      {
+        "name": "scrolled-header",
+        "value": "0 6px 24px rgba(11, 29, 53, 0.06)",
+        "purpose": "Engaged on the sticky 80px limestone header only after window.scrollY > 12."
+      },
+      {
+        "name": "slider-thumb",
+        "value": "0 3px 10px rgba(11, 29, 53, 0.24)",
+        "purpose": "Tactile elevation strictly on the circular brushed-brass range slider dial."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-architectural",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Primary architectural easing for slider dial scale and lifecycle SVG node/guide transitions."
+      },
+      {
+        "name": "duration-fast",
+        "value": "150ms",
+        "purpose": "Color and state transitions on buttons, navigation links, and selector pills."
+      },
+      {
+        "name": "duration-counter",
+        "value": "280ms",
+        "purpose": "Cubic ease-out tabular counter interpolation inside the Capital Recovery Engine."
+      },
+      {
+        "name": "duration-curve",
+        "value": "340ms",
+        "purpose": "Synchronized guide line and node halo transitions on the 5-year residual value curve."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "0.01ms",
+        "purpose": "Global prefers-reduced-motion override collapsing CSS animations, transitions, and JS counter steps."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "container", "value": "1320px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Navy Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary conversion CTA on limestone surfaces using solid Midnight Navy with crisp 3px corners and inline arrow.",
+      "html": "<button type=\"button\" class=\"ds-btn-primary\"><span>Request Equipment Recovery Assessment</span><svg class=\"ds-btn-icon\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3.5 8h9m0 0-3.5-3.5M12.5 8 9 11.5\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: none; border-radius: 3px; background: #0B1D35; color: #F0EDE6; padding: 14px 24px; font-family: \"Hanken Grotesk\", system-ui, sans-serif; font-size: 15px; font-weight: 600; line-height: 1.2; cursor: pointer; transition: background-color 150ms ease; } .ds-btn-primary:hover { background: #132A4A; } .ds-btn-primary:focus-visible { outline: 2px solid #785212; outline-offset: 3px; border-radius: 2px; } .ds-btn-icon { width: 16px; height: 16px; flex-shrink: 0; }"
+    },
+    {
+      "name": "On-Dark Satin Brass Button",
+      "kind": "button",
+      "refersTo": "button-on-dark",
+      "description": "Primary conversion button inside midnight-navy anchor bands and footers using high-contrast Satin Brass Light.",
+      "html": "<div class=\"ds-dark-stage\"><button type=\"button\" class=\"ds-btn-brass\">Explore Channel Partner Programs</button></div>",
+      "css": ".ds-dark-stage { display: inline-flex; padding: 16px 20px; border-radius: 6px; background: #0B1D35; } .ds-btn-brass { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border: none; border-radius: 3px; background: #DFB768; color: #0B1D35; padding: 12px 20px; font-family: \"Hanken Grotesk\", system-ui, sans-serif; font-size: 14.5px; font-weight: 600; line-height: 1.2; cursor: pointer; transition: background-color 150ms ease; } .ds-btn-brass:hover { background: #F1D79B; } .ds-btn-brass:focus-visible { outline: 2px solid #DFB768; outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Selector Pill Group",
+      "kind": "chip",
+      "refersTo": "pill-selector",
+      "description": "Borderless 3px-radius device family and ownership-age selectors inside the Matte Stone Well console.",
+      "html": "<div class=\"ds-pill-well\" role=\"radiogroup\" aria-label=\"Device family\"><button type=\"button\" class=\"ds-pill ds-pill-active\" aria-pressed=\"true\">Spectralink</button><button type=\"button\" class=\"ds-pill\" aria-pressed=\"false\">Apple iOS</button><button type=\"button\" class=\"ds-pill\" aria-pressed=\"false\">Zebra</button></div>",
+      "css": ".ds-pill-well { display: inline-grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 12px; border-radius: 6px; background: #E4DFD4; } .ds-pill { border: none; border-radius: 3px; background: #F0EDE6; color: #0B1D35; padding: 6px 12px; font-family: \"Hanken Grotesk\", system-ui, sans-serif; font-size: 13.5px; font-weight: 600; cursor: pointer; transition: background-color 150ms ease, color 150ms ease; } .ds-pill:hover { background: #F7F5F0; } .ds-pill-active, .ds-pill-active:hover { background: #0B1D35; color: #F0EDE6; } .ds-pill:focus-visible { outline: 2px solid #785212; outline-offset: 2px; border-radius: 2px; }"
+    },
+    {
+      "name": "Limestone Field & Brass Slider",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Borderless stone quantity input lifting to Alabaster on focus, paired with the bespoke brushed-brass architectural range dial.",
+      "html": "<div class=\"ds-input-well\"><div class=\"ds-input-top\"><label class=\"ds-input-label\" for=\"ds-qty\">Fleet Quantity</label><div class=\"ds-qty-wrap\"><input id=\"ds-qty\" class=\"ds-qty-num\" type=\"number\" value=\"250\" min=\"10\" max=\"5000\" /><span class=\"ds-qty-unit\">units</span></div></div><input class=\"ds-brass-slider\" type=\"range\" min=\"10\" max=\"1500\" step=\"10\" value=\"250\" aria-label=\"Adjust fleet device count\" /></div>",
+      "css": ".ds-input-well { max-width: 320px; border-radius: 4px; background: #F0EDE6; padding: 14px; font-family: \"Hanken Grotesk\", system-ui, sans-serif; } .ds-input-top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; } .ds-input-label { font-size: 12px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: #465362; } .ds-qty-wrap { display: flex; align-items: center; gap: 6px; } .ds-qty-num { width: 76px; border: none; border-radius: 3px; background: #E4DFD4; color: #0B1D35; padding: 4px 8px; text-align: right; font-size: 16px; font-weight: 700; font-variant-numeric: tabular-nums; caret-color: #B9862D; transition: background-color 150ms ease; } .ds-qty-num:focus { background: #F7F5F0; outline: 2px solid #785212; outline-offset: 2px; } .ds-qty-unit { font-size: 12.5px; font-weight: 500; color: #465362; } .ds-brass-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; margin-top: 12px; border-radius: 999px; background: #CFC8B9; cursor: pointer; } .ds-brass-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #0B1D35; border: 3px solid #DFB768; box-shadow: 0 3px 10px rgba(11, 29, 53, 0.24); transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), background-color 180ms ease; } .ds-brass-slider::-webkit-slider-thumb:hover { transform: scale(1.1); background: #132A4A; } .ds-brass-slider:focus-visible { outline: 2px solid #785212; outline-offset: 4px; border-radius: 2px; }"
+    },
+    {
+      "name": "Sticky Limestone Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav-header",
+      "description": "80px honed limestone header with horizontal MG emblem lockup, 2px brass active indicator, and solid navy assessment CTA.",
+      "html": "<header class=\"ds-nav-bar\"><div class=\"ds-nav-brand\"><svg class=\"ds-nav-mark\" viewBox=\"0 0 54 28\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3 25V3l9.5 11.5L22 3v22\" stroke=\"#0B1D35\" stroke-width=\"3.2\" stroke-linecap=\"square\" stroke-linejoin=\"miter\"/><path d=\"M24.5 25L35 3\" stroke=\"#B9862D\" stroke-width=\"3.2\" stroke-linecap=\"square\"/><path d=\"M51 9.5A9.5 9.5 0 1 0 51 19.5V15h-7.5\" stroke=\"#B9862D\" stroke-width=\"3.2\" stroke-linecap=\"square\"/></svg><span class=\"ds-nav-rule\" aria-hidden=\"true\"></span><span class=\"ds-nav-wordmark\"><strong>ENTERPRISES</strong><span>Mobility Lifecycle · Canada</span></span></div><nav class=\"ds-nav-links\" aria-label=\"Primary\"><a href=\"#\" class=\"ds-nav-link ds-nav-active\" aria-current=\"page\">Device Buyback</a><a href=\"#\" class=\"ds-nav-link\">Spectralink Maintenance</a><a href=\"#\" class=\"ds-nav-link\">Channel Partners</a></nav><a href=\"#\" class=\"ds-nav-cta\">Request Assessment</a></header>",
+      "css": ".ds-nav-bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 80px; padding: 0 24px; background: #F0EDE6; border-bottom: 1px solid rgba(214, 208, 194, 0.8); box-shadow: 0 6px 24px rgba(11, 29, 53, 0.06); font-family: \"Hanken Grotesk\", system-ui, sans-serif; } .ds-nav-brand { display: inline-flex; align-items: center; gap: 12px; } .ds-nav-mark { height: 28px; width: auto; } .ds-nav-rule { width: 1px; height: 32px; background: linear-gradient(180deg, transparent, #B9862D, transparent); } .ds-nav-wordmark { display: flex; flex-direction: column; line-height: 1; } .ds-nav-wordmark strong { font-family: \"Bricolage Grotesque\", system-ui, sans-serif; font-size: 15px; font-weight: 600; letter-spacing: 0.24em; color: #0B1D35; } .ds-nav-wordmark span { margin-top: 4px; font-size: 10px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: #465362; } .ds-nav-links { display: flex; align-items: center; gap: 24px; } .ds-nav-link { position: relative; padding: 4px 0; font-size: 14.5px; font-weight: 500; color: #465362; text-decoration: none; transition: color 150ms ease; } .ds-nav-link:hover { color: #0B1D35; } .ds-nav-active { font-weight: 600; color: #0B1D35; } .ds-nav-active::after { content: \"\"; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: #B9862D; } .ds-nav-cta { border-radius: 3px; background: #0B1D35; color: #F0EDE6; padding: 10px 18px; font-size: 14px; font-weight: 600; text-decoration: none; transition: background-color 150ms ease; } .ds-nav-cta:hover { background: #132A4A; } .ds-nav-link:focus-visible, .ds-nav-cta:focus-visible { outline: 2px solid #785212; outline-offset: 3px; border-radius: 2px; }"
+    },
+    {
+      "name": "Spectralink Continuity Horizon Card",
+      "kind": "card",
+      "refersTo": "panel-navy",
+      "description": "Borderless Deep Slate Navy contract tile inside the Midnight Navy horizon band with Satin Brass Light term anchor.",
+      "html": "<div class=\"ds-horizon-band\"><a href=\"#\" class=\"ds-horizon-card\"><div class=\"ds-horizon-top\"><span class=\"ds-horizon-term\">6 Months</span><svg class=\"ds-horizon-arrow\" viewBox=\"0 0 16 16\" fill=\"none\" aria-hidden=\"true\"><path d=\"M3.5 8h9m0 0-3.5-3.5M12.5 8 9 11.5\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></div><p class=\"ds-horizon-title\">Phased Refresh Coverage</p><p class=\"ds-horizon-meta\">Staged rollouts across sites &amp; budget cycles</p></a></div>",
+      "css": ".ds-horizon-band { display: inline-block; padding: 16px; border-radius: 6px; background: #0B1D35; font-family: \"Hanken Grotesk\", system-ui, sans-serif; } .ds-horizon-card { display: block; width: 256px; border-radius: 4px; background: #132A4A; padding: 14px 16px; text-decoration: none; transition: background-color 150ms ease; } .ds-horizon-card:hover { background: #1B385F; } .ds-horizon-card:focus-visible { outline: 2px solid #DFB768; outline-offset: 3px; border-radius: 2px; } .ds-horizon-top { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; } .ds-horizon-term { font-family: \"Bricolage Grotesque\", system-ui, sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: #DFB768; } .ds-horizon-arrow { width: 16px; height: 16px; color: rgba(223, 183, 104, 0.85); transition: transform 150ms ease; } .ds-horizon-card:hover .ds-horizon-arrow { transform: translateX(2px); } .ds-horizon-title { margin: 4px 0 0; font-size: 14.5px; font-weight: 600; color: #F4F1EA; } .ds-horizon-meta { margin: 3px 0 0; font-size: 13px; line-height: 1.35; color: #B6C3D4; }"
+    },
+    {
+      "name": "Capital Recovery Console Readout",
+      "kind": "custom",
+      "refersTo": "panel-stone",
+      "description": "Signature Matte Stone Well console pairing the monumental tabular CAD estimate, effective refresh cost, and brass-vs-navy offset meter.",
+      "html": "<div class=\"ds-console\"><div class=\"ds-console-head\"><div><p class=\"ds-console-lbl\">Rough Illustrative Recovery</p><div class=\"ds-console-fig\"><span class=\"ds-console-num\">$25,000</span><span class=\"ds-console-ccy\">CAD</span></div><p class=\"ds-console-range\">Estimated range: $21,250 – $28,750 CAD</p></div><div class=\"ds-console-right\"><p class=\"ds-console-sub\">Effective cost on $200,000 refresh</p><p class=\"ds-console-eff\">$175,000</p><p class=\"ds-console-pct\">12.5% illustrative capital offset</p></div></div><div class=\"ds-meter-track\" role=\"img\" aria-label=\"12.5 percent capital offset\"><div class=\"ds-meter-brass\"></div><div class=\"ds-meter-navy\"></div></div></div>",
+      "css": ".ds-console { max-width: 540px; border-radius: 6px; background: #E4DFD4; padding: 24px; font-family: \"Hanken Grotesk\", system-ui, sans-serif; color: #0B1D35; } .ds-console-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px; padding-bottom: 16px; border-bottom: 1px solid #D6D0C2; } .ds-console-lbl { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #465362; } .ds-console-fig { display: flex; align-items: baseline; gap: 8px; margin-top: 4px; } .ds-console-num { font-family: \"Bricolage Grotesque\", system-ui, sans-serif; font-size: 56px; font-weight: 700; line-height: 0.9; letter-spacing: -0.035em; font-variant-numeric: tabular-nums; color: #0B1D35; } .ds-console-ccy { font-size: 15px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #785212; } .ds-console-range { margin: 6px 0 0; font-size: 13px; font-variant-numeric: tabular-nums; color: #465362; } .ds-console-right { text-align: right; } .ds-console-sub { margin: 0; font-size: 12.5px; font-weight: 500; color: #465362; } .ds-console-eff { margin: 2px 0 0; font-family: \"Bricolage Grotesque\", system-ui, sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; color: #0B1D35; } .ds-console-pct { margin: 2px 0 0; font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; color: #785212; } .ds-meter-track { display: flex; height: 8px; width: 100%; margin-top: 14px; overflow: hidden; border-radius: 2px; background: #D6D0C2; } .ds-meter-brass { width: 12.5%; height: 100%; background: #B9862D; transition: width 300ms ease-out; } .ds-meter-navy { flex: 1; height: 100%; background: #0B1D35; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Limestone & Brass Advisory",
+    "overview": "MG Enterprises speaks in the material language of an architectural ledger rather than a disposable IT broker template. Warm honed limestone surfaces carry deep midnight-navy ink and full-bleed dark horizons, accented sparingly with satin brushed brass drawn directly from the binding interlocking MG monogram. Every interactive figure—recovery estimates, effective upgrade outlays, and contract terms—anchors the visual hierarchy in crisp tabular numerals without ornamental chrome.\n\nSpatial separation relies on calibrated tonal stepping and quiet internal hairlines rather than heavy four-sided card borders, drop shadows, or busy spreadsheet grids. The interlocking diagonal join of the MG monogram recurs at two disciplined scales: crisp inline 55° brass slash dividers in lead statements and low-opacity parallel-line architectural watermarks recessed into the corners of major bands.\n\nThis system explicitly rejects sterile blue-white split-hero templates, rounded pill buttons, gimmicky badge stamps, and marketing eyebrow kickers above section headlines. It honors full WCAG AA contrast across light and dark grounds and respects reduced-motion preferences across all animated counters and SVG transitions.",
+    "keyCharacteristics": [
+      "Honed warm limestone canvas (`#F0EDE6`) stepping through matte stone wells (`#EAE6DD`, `#E4DFD4`) against deep midnight-navy anchor bands (`#0B1D35`).",
+      "Dual-temperature brushed brass accents (`#785212` for accessible text on light, `#B9862D` for rules and fills, `#DFB768` / `#F1D79B` on dark navy).",
+      "Expressive geometric display type (`Bricolage Grotesque`) paired with disciplined grotesque body copy (`Hanken Grotesk`) and tabular financial figures.",
+      "Borderless flat-by-default surfaces partitioned by tonal contrast and quiet `1px` internal hairlines, with milled corners never exceeding `6px`.",
+      "Echoed 55° MG monogram slash geometry in inline hairline dividers and recessed corner watermarks."
+    ],
+    "rules": [
+      {
+        "name": "The Two-Temperature Brass Rule",
+        "body": "On light limestone surfaces, interactive text, labels, and negative-offset figures use Burnished Brass Deep (`#785212`) for WCAG AA contrast, reserving Brushed Brass (`#B9862D`) for hairlines, underlines, and fills; on midnight-navy surfaces, switch strictly to Satin Brass Light (`#DFB768`) and Pale Brass (`#F1D79B`).",
+        "section": "colors"
+      },
+      {
+        "name": "The Tonal Well Rule",
+        "body": "Light containers step through warm mineral lightness (`#F0EDE6` → `#EAE6DD` → `#E4DFD4`, lifting to `#F7F5F0` only on hover or input focus) rather than placing pure white cards on cool gray backgrounds.",
+        "section": "colors"
+      },
+      {
+        "name": "The Anchor Band Rule",
+        "body": "Deep Midnight Navy (`#0B1D35`) appears exclusively as primary ink, solid controls, or full-bleed architectural anchor bands—never as translucent blue gradients or mid-tone corporate washes.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Anchor Rule",
+        "body": "Every dollar amount, percentage, unit count, step number, and contract term applies `font-variant-numeric: tabular-nums` so animated counter transitions and stacked financial ledgers remain horizontally locked.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Kicker Rule",
+        "body": "Page and section headings open directly in `Bricolage Grotesque` without decorative eyebrow kickers above them; tracked uppercase labels are reserved exclusively for form legends, data readout captions, and footer directory headings.",
+        "section": "typography"
+      },
+      {
+        "name": "The Alternating Ground Rule",
+        "body": "Full-width bands alternate across calibrated material grounds (`stone` → `navy` → `stone` → `stone-subtle` → `navy`) so vertical pacing reads through surface shifts rather than full-bleed horizontal rules.",
+        "section": "layout"
+      },
+      {
+        "name": "The Borderless Tonal Step Rule",
+        "body": "Surfaces carry no outer strokes and no resting shadows; hierarchy comes from nested tonal steps (`#F0EDE6` ↔ `#E4DFD4` on light; `#0B1D35` ↔ `#132A4A` on dark) with `1px` internal hairlines (`#D6D0C2` on light, `10%–12%` white on dark) reserved strictly for ledger row divisions.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Crisp Corner Rule",
+        "body": "Buttons and interactive chips never exceed `3px` radius and containers never exceed `6px`; pill-shaped CTAs (`999px`) are prohibited outside slider and scrollbar geometry.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do use Burnished Brass Deep (`#785212`) for brass-colored text, currency codes, and focus rings on light limestone surfaces, and switch to Satin Brass Light (`#DFB768`) on midnight-navy bands.",
+      "Do separate containers and bands using calibrated tonal steps (`#F0EDE6` → `#EAE6DD` → `#E4DFD4`, `#0B1D35` → `#132A4A`) and `1px` internal hairlines instead of four-sided box borders.",
+      "Do apply `tabular-nums` to every financial estimate, offset percentage, quantity input, step index, and contract duration.",
+      "Do preserve the binding MG monogram assets (`mg-monogram-light.png` on limestone, `mg-monogram-dark.png` on midnight navy) and echo the 55° join solely through `.mg-slash-divider` and low-opacity (`4.5%–9%`) corner watermarks.",
+      "Do keep button and control corners crisp (`3px` radius) and major container corners milled (`6px` radius).",
+      "Do respect `prefers-reduced-motion: reduce` on all animated counters, SVG curve guides, and hover transitions."
+    ],
+    "donts": [
+      "Don't place pure white (`#FFFFFF`) cards or heavy outer borders on limestone grounds, or add resting drop shadows to cards and panels.",
+      "Don't add decorative uppercase eyebrow kickers above page or section headings; lead sections directly with `Bricolage Grotesque`.",
+      "Don't use pill-shaped (`999px`) buttons, bright SaaS blue washes, translucent glassmorphism, or decorative gradients across backgrounds.",
+      "Don't place Brushed Brass (`#B9862D`) or Satin Brass Light (`#DFB768`) body text directly on light limestone (`#F0EDE6` / `#E4DFD4`), where contrast falls below WCAG AA.",
+      "Don't stack two identical limestone tones directly inside each other without a tonal step (`stone-well` on `stone`, or `stone` on `stone-subtle` / `stone-well`)."
+    ]
+  }
+}
